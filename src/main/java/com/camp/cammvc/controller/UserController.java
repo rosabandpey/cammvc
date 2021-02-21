@@ -5,6 +5,7 @@ import com.camp.cammvc.entity.AppUser;
 import com.camp.cammvc.service.UserApiServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
@@ -21,11 +22,18 @@ public class UserController {
     @Autowired
     private UserApiServiceImpl userApiService;
 
-    @GetMapping
+   /* @GetMapping
     public String getByUsername(@RequestParam("username")String username){
 
         userApiService.getByUsername(username);
         return "responseApi";
     }
+*/
 
+    @GetMapping
+    public String getAllUsers(Model model){
+
+        model.addAttribute("tasks",userApiService.getAllUsers());
+        return "tasks";
+    }
 }
