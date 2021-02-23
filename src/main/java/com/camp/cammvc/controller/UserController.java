@@ -5,6 +5,7 @@ import com.camp.cammvc.entity.AppUser;
 import com.camp.cammvc.service.UserApiServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,20 +50,17 @@ public class UserController {
 
     @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
     public String editUserById(Model model,AppUser appUser)
-
     {
-
-
         model.addAttribute("appUser", appUser);
-
         return "add-edit-user";
     }
 
-    @RequestMapping(path="/create",method = {RequestMethod.GET,RequestMethod.POST})
-    public String register(Model model,AppUser appUser) throws JsonProcessingException {
-        model.addAttribute("appUser",model);
+
+
+    @RequestMapping(path="/create",method = {RequestMethod.GET,RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String register(AppUser appUser)  {
         userApiService.register(appUser) ;
-        return "redirect:/";
+        return "redirect:/allUser";
     }
 
 

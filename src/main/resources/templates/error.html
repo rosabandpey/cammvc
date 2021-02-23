@@ -1,0 +1,51 @@
+
+<a href="/allUser">Go Home</a>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+<body marginwidth="0" marginheight="0">
+<div class="container">
+    <div class="row">
+        <h1>Error Page</h1>
+    </div>
+    <div class="row">It apperrs Either something went wrong or the page
+        doesn't exist anymore.....</div>
+    <div class="row rowDesign">
+
+        <div class="col-md-8">
+            <span th:text="${responseApi}"></span>
+        </div>
+    </div>
+
+    <div class="row rowDesign">
+        <div class="col-md-4 ml-auto">
+            <span class="legend">Error</span>
+        </div>
+        <div class="col-md-8">
+            <span th:text="${responseApi.message}"></span>
+        </div>
+    </div>
+
+
+    <div class="row rowDesign">
+        <div class="col-md-4 ml-auto">
+            <span class="legend">Date</span>
+        </div>
+        <div class="col-md-8">
+            <span th:text="${responseApi.date}"></span>
+        </div>
+    </div>
+    <div class="row rowDesign">
+        <div class="col-md-4 ml-auto">
+            <span class="legend">Trace</span>
+        </div>
+        <div class="col-md-8">
+            <span th:text="${trace}"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

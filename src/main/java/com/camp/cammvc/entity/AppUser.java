@@ -1,12 +1,14 @@
 package com.camp.cammvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AppUser implements Serializable {
 
     private static final long serialVersionUID = -6955836358739196276L;
