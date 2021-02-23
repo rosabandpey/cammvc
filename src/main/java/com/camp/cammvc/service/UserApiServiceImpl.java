@@ -1,5 +1,6 @@
 package com.camp.cammvc.service;
 
+import com.camp.cammvc.controller.MyErrorController;
 import com.camp.cammvc.entity.AppUser;
 import com.camp.cammvc.entity.ResponseApi;
 import com.camp.cammvc.exception.ApiException;
@@ -17,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
@@ -39,6 +41,8 @@ public class UserApiServiceImpl {
 
     @Autowired
     private RestTemplate restTemplate;
+
+
 
     ResponseEntity<ResponseApi> response;
 
@@ -65,35 +69,17 @@ public class UserApiServiceImpl {
 
 
     public  ResponseEntity<?> register(AppUser appUser)  {
-       // try{
-        final String uri="http://localhost:8085/api/authenticate/register";
 
-        response=restTemplate.postForEntity(uri,appUser,ResponseApi.class);
+           final String uri = "http://localhost:8085/api/authenticate/register";
+           restTemplate.setErrorHandler(new MyErrorController());
+           response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
+           System.out.println("message" + response.getBody().getMessage());
+           if (!response.getBody().isSuccessfull()){
+               ResponseApi responseApi=new ResponseApi(response.getBody().isSuccessfull(),response.getBody().getMessage(),response.getBody().getDate(),null);
 
-            System.out.println("message"+response.getBody().getMessage());
-            if (!response.getBody().isSuccessfull()){
-                ResponseApi responseApi=new ResponseApi();
-                responseApi.setMessage(response.getBody().getMessage());
-                responseApi.setSuccessfull(response.getBody().isSuccessfull());
-                responseApi.setData(response.getBody().getData());
-            }
-
-
-   // } catch (HttpClientErrorException exception) {
-       // System.out.println("is successful"+);
-       // System.out.println("message"+);
-         //   System.out.println("HttpClientErrorException");
-         //   System.out.println(exception.getStatusCode().toString());
-          //  throw new ApiException(response.getBody().getMessage());
-
-   // }catch (HttpStatusCodeException exception) {
-       // System.out.println("is successful"+response.getBody().isSuccessfull());
-       // System.out.println("message"+response.getBody().getMessage());
-      //      System.out.println("HttpStatusCodeException");
-  //  } catch (Exception e){
-       //     System.out.println("not found");
-    //    }
-        return response;
+               throw new ApiException(response.getBody().getMessage());
+           }
+           return response;
 
 
 
@@ -101,10 +87,6 @@ public class UserApiServiceImpl {
         }
 
 
-       // else  {
-           // throw new ApiException("Request Failed");
-
-       // }
 
 
 

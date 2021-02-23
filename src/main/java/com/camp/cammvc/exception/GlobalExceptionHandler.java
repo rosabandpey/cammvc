@@ -1,3 +1,4 @@
+
 package com.camp.cammvc.exception;
 
 import com.camp.cammvc.entity.ErrorMessage;
@@ -14,14 +15,14 @@ import java.util.Date;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-         @ExceptionHandler(NotFoundException.class)
-         public ResponseEntity<?> notFoundException(NotFoundException exception, WebRequest request){
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<?> notFoundException(NotFoundException exception, WebRequest request){
 
-             String stackTrace= ExceptionUtils.getStackTrace(exception);
-             ErrorMessage errorMessage=new ErrorMessage(exception.getMessage(),stackTrace,request.getDescription(false),new Date().toString());
-             return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+        String stackTrace= ExceptionUtils.getStackTrace(exception);
+        ErrorMessage errorMessage=new ErrorMessage(exception.getMessage(),stackTrace,request.getDescription(false),new Date().toString());
+        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
 
-         }
+    }
 
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<?> apiException(ApiException exception, WebRequest request){
@@ -29,7 +30,7 @@ public class GlobalExceptionHandler {
         String stackTrace= ExceptionUtils.getStackTrace(exception);
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
 
-       // ErrorMessage errorMessage=new ErrorMessage(exception.getMessage(),stackTrace,request.getDescription(false),new Date().toString());
+        // ErrorMessage errorMessage=new ErrorMessage(exception.getMessage(),stackTrace,request.getDescription(false),new Date().toString());
         return new ResponseEntity<>(responseApi, HttpStatus.BAD_REQUEST);
 
     }

@@ -1,32 +1,45 @@
 package com.camp.cammvc.controller;
 
-import com.camp.cammvc.entity.ErrorMessage;
 import com.camp.cammvc.entity.ResponseApi;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.DefaultResponseErrorHandler;
+import org.springframework.web.client.ResponseErrorHandler;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
-@Controller
-public class MyErrorController implements ErrorController {
-
-    @RequestMapping("/error")
-    public String handleError(Model model, ResponseApi responseApi, HttpServletRequest request) {
-        //do something like logging
-        model.addAttribute("responseApi", responseApi);
-        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
-
-            return "error";
-        }
-
+public class MyErrorController implements ResponseErrorHandler {
 
     @Override
-    public String getErrorPath() {
-        return null;
+    public boolean hasError(ClientHttpResponse response) throws IOException {
+        return new DefaultResponseErrorHandler().hasError(response);
+    }
+
+    @Override
+    public void handleError(ClientHttpResponse response) throws IOException {
+
+        if (response.getStatusCode().series() == HttpStatus.Series.SERVER_ERROR) {
+            // handle 5xx errors
+            // raw http status code e.g `500`
+            System.out.println(response.getRawStatusCode());
+
+            // http status code e.g. `500 INTERNAL_SERVER_ERROR`
+            System.out.println(response.getStatusCode());
+
+
+        } else if (response.getStatusCode().series() == HttpStatus.Series.CLIENT_ERROR) {
+            // handle 4xx errors
+            // raw http status code e.g `404`
+            System.out.println(response.getRawStatusCode());
+
+            // http status code e.g. `404 NOT_FOUND`
+            System.out.println(response.getStatusCode());
+
+            // get response body
+            System.out.println(response.getBody());
+        }
     }
 }
