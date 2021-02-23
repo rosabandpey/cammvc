@@ -11,7 +11,7 @@
 <div class="container my-2">
     <div class="card">
         <div class="card-body">
-            <div th:switch="${responseApi}" class="container my-5">
+            <div th:switch="${exception}" class="container my-5">
                 <p class="my-5">
                     <a href="/allUser" class="btn btn-primary">
                         <i class="fas fa-user-plus ml-2"> Back Home </i></a>
@@ -31,7 +31,7 @@
                             </thead>
                             <tbody>
 
-                                <td th:text="${responseApi.message}"></td>
+                                <td th:text="${exception.message}"></td>
                                 <td th:text="${responseApi.date}"></td>
                                 <td th:text="${responseApi.successfull}"></td>
                                 <td th:text="${responseApi.date}"></td>
