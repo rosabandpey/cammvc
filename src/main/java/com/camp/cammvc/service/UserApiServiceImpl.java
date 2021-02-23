@@ -17,6 +17,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.websocket.server.PathParam;
@@ -38,6 +40,8 @@ public class UserApiServiceImpl {
     @Autowired
     private RestTemplate restTemplate;
 
+    ResponseEntity<ResponseApi> response;
+
    /* public ResponseApi getByUsername(String username){
         final String uri="http://localhost:8085/api/authenticate/getByUsername/{username}";
         Map<String,String> params=new HashMap<String,String>();
@@ -57,24 +61,51 @@ public class UserApiServiceImpl {
         return Arrays.stream(restTemplate.getForObject(uri, AppUser[].class)).collect(Collectors.toList());
     }
 
-    public  void register(AppUser appUser)  {
 
+
+
+    public  ResponseEntity<?> register(AppUser appUser)  {
+       // try{
         final String uri="http://localhost:8085/api/authenticate/register";
-        String result;
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        ResponseEntity<ResponseApi> response=restTemplate.postForEntity(uri,appUser,ResponseApi.class);
-        System.out.println("is successful"+response.getBody().isSuccessfull());
-        if(response.getBody().isSuccessfull()) {
-            System.out.println("Request Successful");
-            System.out.println( response.getBody().getMessage());
+
+        response=restTemplate.postForEntity(uri,appUser,ResponseApi.class);
+
+            System.out.println("message"+response.getBody().getMessage());
+            if (!response.getBody().isSuccessfull()){
+                ResponseApi responseApi=new ResponseApi();
+                responseApi.setMessage(response.getBody().getMessage());
+                responseApi.setSuccessfull(response.getBody().isSuccessfull());
+                responseApi.setData(response.getBody().getData());
+            }
+
+
+   // } catch (HttpClientErrorException exception) {
+       // System.out.println("is successful"+);
+       // System.out.println("message"+);
+         //   System.out.println("HttpClientErrorException");
+         //   System.out.println(exception.getStatusCode().toString());
+          //  throw new ApiException(response.getBody().getMessage());
+
+   // }catch (HttpStatusCodeException exception) {
+       // System.out.println("is successful"+response.getBody().isSuccessfull());
+       // System.out.println("message"+response.getBody().getMessage());
+      //      System.out.println("HttpStatusCodeException");
+  //  } catch (Exception e){
+       //     System.out.println("not found");
+    //    }
+        return response;
+
+
+
 
         }
-        else  {
+
+
+       // else  {
            // throw new ApiException("Request Failed");
 
-        }
+       // }
 
-    }
+
 
 }

@@ -13,6 +13,15 @@ public class ResponseApi implements Serializable {
     private String Date;
     private Object data;
 
+    public ResponseApi() {
+    }
+
+    public ResponseApi(boolean isSuccessfull, String message, String date, Object data) {
+        this.isSuccessfull = isSuccessfull;
+        this.message = message;
+        Date = date;
+        this.data = data;
+    }
 
     public boolean isSuccessfull() {
         return isSuccessfull;

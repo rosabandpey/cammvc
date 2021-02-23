@@ -58,7 +58,8 @@ public class UserController {
 
 
     @RequestMapping(path="/create",method = {RequestMethod.GET,RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String register(AppUser appUser)  {
+    public String register(Model model,AppUser appUser)  {
+       // model.addAttribute("appUser", appUser);
         userApiService.register(appUser) ;
         return "redirect:/allUser";
     }

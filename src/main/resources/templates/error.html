@@ -7,43 +7,41 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 </head>
 <body marginwidth="0" marginheight="0">
-<div class="container">
-    <div class="row">
-        <h1>Error Page</h1>
-    </div>
-    <div class="row">It apperrs Either something went wrong or the page
-        doesn't exist anymore.....</div>
-    <div class="row rowDesign">
 
-        <div class="col-md-8">
-            <span th:text="${responseApi}"></span>
-        </div>
-    </div>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${responseApi}" class="container my-5">
+                <p class="my-5">
+                    <a href="/allUser" class="btn btn-primary">
+                        <i class="fas fa-user-plus ml-2"> Back Home </i></a>
+                </p>
+                <div class="col-md-10">
+                    <h2 th:case="null">No record found !!</h2>
+                    <div th:case="*">
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th>message</th>
+                                <th>date</th>
+                                <th>is Successful</th>
+                                <th>data</th>
 
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Error</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${responseApi.message}"></span>
-        </div>
-    </div>
+                            </tr>
+                            </thead>
+                            <tbody>
 
+                                <td th:text="${responseApi.message}"></td>
+                                <td th:text="${responseApi.date}"></td>
+                                <td th:text="${responseApi.successfull}"></td>
+                                <td th:text="${responseApi.date}"></td>
 
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Date</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${responseApi.date}"></span>
-        </div>
-    </div>
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Trace</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${trace}"></span>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

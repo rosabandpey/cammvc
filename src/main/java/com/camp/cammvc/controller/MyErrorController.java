@@ -1,5 +1,6 @@
 package com.camp.cammvc.controller;
 
+import com.camp.cammvc.entity.ErrorMessage;
 import com.camp.cammvc.entity.ResponseApi;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
@@ -19,15 +20,7 @@ public class MyErrorController implements ErrorController {
         model.addAttribute("responseApi", responseApi);
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
-        if (status != null) {
-            Integer statusCode = Integer.valueOf(status.toString());
 
-            if (statusCode == HttpStatus.BAD_REQUEST.value()) {
-                responseApi.setMessage("you are");
-            } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                responseApi.getMessage();
-            }
-        }
             return "error";
         }
 
