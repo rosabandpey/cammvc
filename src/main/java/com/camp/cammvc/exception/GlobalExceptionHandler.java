@@ -25,13 +25,11 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ApiException.class)
-    public ResponseEntity<?> apiException(ApiException exception, WebRequest request){
+    public ResponseApi apiException(ApiException exception, WebRequest request){
 
         String stackTrace= ExceptionUtils.getStackTrace(exception);
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
-
-        // ErrorMessage errorMessage=new ErrorMessage(exception.getMessage(),stackTrace,request.getDescription(false),new Date().toString());
-        return new ResponseEntity<>(responseApi, HttpStatus.BAD_REQUEST);
+        return responseApi;
 
     }
 

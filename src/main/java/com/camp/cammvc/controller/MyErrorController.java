@@ -1,45 +1,51 @@
 package com.camp.cammvc.controller;
 
 import com.camp.cammvc.entity.ResponseApi;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.DefaultResponseErrorHandler;
-import org.springframework.web.client.ResponseErrorHandler;
+import org.springframework.web.context.request.WebRequest;
 
-import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
-public class MyErrorController implements ResponseErrorHandler {
+@Controller
+public class MyErrorController implements ErrorController {
 
-    @Override
-    public boolean hasError(ClientHttpResponse response) throws IOException {
-        return new DefaultResponseErrorHandler().hasError(response);
+    private final ErrorAttributes errorAttributes;
+
+    public MyErrorController(ErrorAttributes errorAttributes) {
+        this.errorAttributes = errorAttributes;
     }
 
-    @Override
-    public void handleError(ClientHttpResponse response) throws IOException {
+    @RequestMapping("/error")
+    public String handleError(Model model, ResponseApi responseApi,  WebRequest webRequest,HttpServletRequest request) {
 
-        if (response.getStatusCode().series() == HttpStatus.Series.SERVER_ERROR) {
-            // handle 5xx errors
-            // raw http status code e.g `500`
-            System.out.println(response.getRawStatusCode());
+        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
-            // http status code e.g. `500 INTERNAL_SERVER_ERROR`
-            System.out.println(response.getStatusCode());
+        if (status != null) {
+            Integer statusCode = Integer.valueOf(status.toString());
 
-
-        } else if (response.getStatusCode().series() == HttpStatus.Series.CLIENT_ERROR) {
-            // handle 4xx errors
-            // raw http status code e.g `404`
-            System.out.println(response.getRawStatusCode());
-
-            // http status code e.g. `404 NOT_FOUND`
-            System.out.println(response.getStatusCode());
-
-            // get response body
-            System.out.println(response.getBody());
+            if(statusCode == HttpStatus.NOT_FOUND.value()) {
+                return "error-404";
+            }
+            else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+                final Throwable error = errorAttributes.getError(webRequest);
+                responseApi=new ResponseApi(false,error.getMessage(),new Date().toString(),null);
+                model.addAttribute("responseApi", responseApi);
+                return "error-500";
+            }
         }
+        return "error";
+    }
+
+
+    @Override
+    public String getErrorPath() {
+        return "/error";
     }
 }

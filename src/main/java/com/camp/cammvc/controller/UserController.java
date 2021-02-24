@@ -2,6 +2,7 @@ package com.camp.cammvc.controller;
 
 
 import com.camp.cammvc.entity.AppUser;
+import com.camp.cammvc.entity.ResponseApi;
 import com.camp.cammvc.exception.ApiException;
 import com.camp.cammvc.service.UserApiServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -58,9 +59,9 @@ public class UserController {
 
 
 
-    @RequestMapping(path="/create",method = {RequestMethod.GET,RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String register(Model model,AppUser appUser)  {
-       // model.addAttribute("appUser", appUser);
+    @RequestMapping(path="/create",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String register(Model model, AppUser appUser)  {
+       // model.addAttribute("responseApi", responseApi);
         userApiService.register(appUser) ;
         return "redirect:/allUser";
     }
