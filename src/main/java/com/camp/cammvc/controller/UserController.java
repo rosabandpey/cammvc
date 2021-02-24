@@ -8,6 +8,7 @@ import com.camp.cammvc.service.UserApiServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,9 +29,11 @@ public class UserController {
 
 
     @GetMapping("/getUser")
-    public String getByUsername(@PathParam("username") String username,Model model){
+    public String getByUsername(@PathVariable("username") String username,Model model){
+        ResponseApi responseApi=userApiService.getByUsername(username);
 
-        model.addAttribute("appUser",userApiService.getByUsername(username));
+        model.addAttribute("responseApi",responseApi );
+        //model.addAttribute("getUser",userApiService.getByUsername(username));
         return "user";
     }
 

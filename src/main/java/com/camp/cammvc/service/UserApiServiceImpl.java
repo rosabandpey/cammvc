@@ -33,12 +33,14 @@ public class UserApiServiceImpl {
 
     public ResponseApi getByUsername(String username){
         final String uri="http://localhost:8085/api/authenticate/getByUsername/{username}";
+        restTemplate.setErrorHandler(new MyErrorHandler());
         Map<String,String> params=new HashMap<String,String>();
         params.put("username",username);
-        ResponseApi responseApi=restTemplate.getForObject(uri,ResponseApi.class,params);
-
-        if (!responseApi.isSuccessfull()){
-            throw new NotFoundException(responseApi.getMessage());
+        response=restTemplate.getForEntity(uri, ResponseApi.class,params);
+        ResponseApi responseApi=response.getBody();
+       // AppUser appuser= (AppUser) response.getBody().getData();
+        if (!response.getBody().isSuccessfull()){
+            throw new NotFoundException(response.getBody().getMessage());
         }
         return responseApi;
     }

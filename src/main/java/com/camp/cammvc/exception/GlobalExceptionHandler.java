@@ -16,16 +16,23 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<?> notFoundException(NotFoundException exception, WebRequest request){
+    public ResponseApi notFoundException(NotFoundException exception, WebRequest request){
 
         String stackTrace= ExceptionUtils.getStackTrace(exception);
-        ErrorMessage errorMessage=new ErrorMessage(exception.getMessage(),stackTrace,request.getDescription(false),new Date().toString());
-        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
-
+        ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
+        return  responseApi;
     }
 
     @ExceptionHandler(ApiException.class)
     public ResponseApi apiException(ApiException exception, WebRequest request){
+
+        ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
+        return responseApi;
+
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseApi globalException(Exception exception, WebRequest request){
 
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
         return responseApi;

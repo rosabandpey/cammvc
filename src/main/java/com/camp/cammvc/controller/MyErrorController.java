@@ -31,6 +31,9 @@ public class MyErrorController implements ErrorController {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if(statusCode == HttpStatus.NOT_FOUND.value()) {
+                final Throwable error = errorAttributes.getError(webRequest);
+                responseApi=new ResponseApi(false,error.getMessage(),new Date().toString(),null);
+                model.addAttribute("responseApi", responseApi);
                 return "error-404";
             }
             else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
