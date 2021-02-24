@@ -27,7 +27,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ApiException.class)
     public ResponseApi apiException(ApiException exception, WebRequest request){
 
-        String stackTrace= ExceptionUtils.getStackTrace(exception);
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
         return responseApi;
 

@@ -27,12 +27,12 @@ public class UserController {
     private UserApiServiceImpl userApiService;
 
 
-   /* @GetMapping
+    @GetMapping("/getUser")
     public String getByUsername(@PathParam("username") String username,Model model){
 
-        model.addAttribute("responseApi",userApiService.getByUsername(username));
-        return "responseApi";
-    }  */
+        model.addAttribute("appUser",userApiService.getByUsername(username));
+        return "user";
+    }
 
 
     @GetMapping("/allUser")
