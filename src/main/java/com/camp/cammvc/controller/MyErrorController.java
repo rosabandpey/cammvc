@@ -26,13 +26,13 @@ public class MyErrorController implements ErrorController {
     public String handleError(Model model, ResponseApi responseApi,  WebRequest webRequest,HttpServletRequest request) {
 
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
+        //System.out.println(status);
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
 
-            if(statusCode == HttpStatus.NOT_FOUND.value()) {
+            if(statusCode == 404) {
                 final Throwable error = errorAttributes.getError(webRequest);
-                responseApi=new ResponseApi(false,error.getMessage(),new Date().toString(),null);
+//                responseApi=new ResponseApi(false,error.getMessage(),new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
                 return "error-404";
             }

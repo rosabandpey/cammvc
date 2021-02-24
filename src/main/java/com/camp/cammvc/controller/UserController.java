@@ -30,8 +30,8 @@ public class UserController {
 
     @GetMapping("/getUser")
     public String getByUsername(@PathVariable("username") String username,Model model){
-        ResponseApi responseApi=userApiService.getByUsername(username);
-
+        AppUser responseApi=userApiService.getByUsername(username);
+        System.out.println(responseApi.getUsername());
         model.addAttribute("responseApi",responseApi );
         //model.addAttribute("getUser",userApiService.getByUsername(username));
         return "user";

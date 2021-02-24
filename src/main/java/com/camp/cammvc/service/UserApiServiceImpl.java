@@ -31,18 +31,24 @@ public class UserApiServiceImpl {
 
     ResponseEntity<ResponseApi> response;
 
-    public ResponseApi getByUsername(String username){
-        final String uri="http://localhost:8085/api/authenticate/getByUsername/{username}";
-        restTemplate.setErrorHandler(new MyErrorHandler());
-        Map<String,String> params=new HashMap<String,String>();
-        params.put("username",username);
-        response=restTemplate.getForEntity(uri, ResponseApi.class,params);
-        ResponseApi responseApi=response.getBody();
-       // AppUser appuser= (AppUser) response.getBody().getData();
-        if (!response.getBody().isSuccessfull()){
-            throw new NotFoundException(response.getBody().getMessage());
+    public AppUser getByUsername(String username){
+        AppUser appUser=null;
+        try {
+            final String uri = "http://localhost:8085/api/authenticate/getByUsername/{username}";
+            restTemplate.setErrorHandler(new MyErrorHandler());
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("username", username);
+            appUser = restTemplate.getForObject(uri, AppUser.class, params);
+        }catch (NotFoundException exception){
+            System.out.println(exception.getMessage());
         }
-        return responseApi;
+       // System.out.println(response.getBody().getMessage());
+       // ResponseApi responseApi=response.getBody();
+       // AppUser appuser= (AppUser) response.getBody().getData();
+      //  if (!response.getBody().isSuccessfull()){
+      //      throw new NotFoundException(response.getBody().getMessage());
+      //  }
+        return appUser;
     }
 
 

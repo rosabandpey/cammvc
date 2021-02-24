@@ -15,13 +15,13 @@ import java.util.Date;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(NotFoundException.class)
+    /*@ExceptionHandler(NotFoundException.class)
     public ResponseApi notFoundException(NotFoundException exception, WebRequest request){
 
         String stackTrace= ExceptionUtils.getStackTrace(exception);
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
         return  responseApi;
-    }
+    } */
 
     @ExceptionHandler(ApiException.class)
     public ResponseApi apiException(ApiException exception, WebRequest request){
@@ -31,12 +31,13 @@ public class GlobalExceptionHandler {
 
     }
 
+    /*
     @ExceptionHandler(Exception.class)
     public ResponseApi globalException(Exception exception, WebRequest request){
 
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
         return responseApi;
 
-    }
+    } */
 
 }
