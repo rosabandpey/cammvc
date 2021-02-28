@@ -21,14 +21,9 @@ public class AppUser implements Serializable {
     private String password;
     private String sex;
     private Date birthdate;
+    private Set<UserRole> userRoles=new HashSet<>();
 
-
-
-
-    public AppUser() {
-    }
-
-    public AppUser(long id, String firstName, String lastName, String username, String password, String sex, Date birthdate) {
+    public AppUser(long id, String firstName, String lastName, String username, String password, String sex, Date birthdate, Set<UserRole> userRoles) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,9 +31,24 @@ public class AppUser implements Serializable {
         this.password = password;
         this.sex = sex;
         this.birthdate = birthdate;
+        this.userRoles = userRoles;
+    }
+
+    public AppUser() {
     }
 
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
 
     public long getId() {
         return id;

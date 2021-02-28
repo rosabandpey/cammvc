@@ -30,9 +30,10 @@ public class UserController {
 
     @GetMapping("/getUser")
     public String getByUsername(@PathVariable("username") String username,Model model){
-        AppUser responseApi=userApiService.getByUsername(username);
-        System.out.println(responseApi.getUsername());
-        model.addAttribute("responseApi",responseApi );
+        //ResponseEntity<?> responseapi=userApiService.getByUsername(username);
+
+        // System.out.println(responseApi.getUsername());
+        model.addAttribute("user",userApiService.getByUsername(username) );
         //model.addAttribute("getUser",userApiService.getByUsername(username));
         return "user";
     }

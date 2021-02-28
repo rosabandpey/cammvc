@@ -30,9 +30,10 @@ public class MyErrorController implements ErrorController {
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
 
-            if(statusCode == 404) {
-                final Throwable error = errorAttributes.getError(webRequest);
-//                responseApi=new ResponseApi(false,error.getMessage(),new Date().toString(),null);
+            if(statusCode == HttpStatus.NOT_FOUND.value()) {
+                final Throwable error1 = errorAttributes.getError(webRequest);
+
+                responseApi=new ResponseApi(false,"User Not Found",new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
                 return "error-404";
             }

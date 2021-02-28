@@ -31,13 +31,15 @@ public class GlobalExceptionHandler {
 
     }
 
-    /*
+/*
     @ExceptionHandler(Exception.class)
-    public ResponseApi globalException(Exception exception, WebRequest request){
+    public ResponseEntity<?> globalException(Exception exception,WebRequest request)
+    {
 
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
-        return responseApi;
+        return new ResponseEntity<>(responseApi,HttpStatus.NOT_FOUND);
+    }
+*/
 
-    } */
 
 }

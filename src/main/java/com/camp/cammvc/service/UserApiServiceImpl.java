@@ -28,27 +28,23 @@ public class UserApiServiceImpl {
     private RestTemplate restTemplate;
 
 
-
+    AppUser appUser;
     ResponseEntity<ResponseApi> response;
 
     public AppUser getByUsername(String username){
-        AppUser appUser=null;
-        try {
+
             final String uri = "http://localhost:8085/api/authenticate/getByUsername/{username}";
-            restTemplate.setErrorHandler(new MyErrorHandler());
+           // restTemplate.setErrorHandler(new MyErrorHandler());
             Map<String, String> params = new HashMap<String, String>();
             params.put("username", username);
+           // response = restTemplate.getForEntity(uri,  ResponseApi.class,params);
+
             appUser = restTemplate.getForObject(uri, AppUser.class, params);
-        }catch (NotFoundException exception){
-            System.out.println(exception.getMessage());
-        }
-       // System.out.println(response.getBody().getMessage());
-       // ResponseApi responseApi=response.getBody();
-       // AppUser appuser= (AppUser) response.getBody().getData();
-      //  if (!response.getBody().isSuccessfull()){
-      //      throw new NotFoundException(response.getBody().getMessage());
-      //  }
+        System.out.println(appUser.getUsername());
+
         return appUser;
+
+
     }
 
 
