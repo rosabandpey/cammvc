@@ -24,10 +24,10 @@ public class GlobalExceptionHandler {
     } */
 
     @ExceptionHandler(ApiException.class)
-    public ResponseApi apiException(ApiException exception, WebRequest request){
+    public ResponseEntity<?> apiException(ApiException exception, WebRequest request){
 
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
-        return responseApi;
+        return new ResponseEntity<>(responseApi,HttpStatus.NOT_FOUND);
 
     }
 

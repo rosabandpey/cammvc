@@ -27,7 +27,7 @@ public class MyErrorController implements ErrorController {
 
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         //System.out.println(status);
-        if (status != null) {
+       /* if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if(statusCode == HttpStatus.NOT_FOUND.value()) {
@@ -43,7 +43,9 @@ public class MyErrorController implements ErrorController {
                 model.addAttribute("responseApi", responseApi);
                 return "error-500";
             }
-        }
+        }*/
+
+        model.addAttribute("errorapi",responseApi.getMessage());
         return "error";
     }
 

@@ -10,10 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,27 +28,31 @@ public class UserApiServiceImpl {
     AppUser appUser;
     ResponseEntity<ResponseApi> response;
 
-    public AppUser getByUsername(String username){
+    public ResponseEntity<?> getByUsername(String username){
 
             final String uri = "http://localhost:8085/api/authenticate/getByUsername/{username}";
            // restTemplate.setErrorHandler(new MyErrorHandler());
             Map<String, String> params = new HashMap<String, String>();
             params.put("username", username);
-           // response = restTemplate.getForEntity(uri,  ResponseApi.class,params);
+            response = restTemplate.getForEntity(uri, ResponseApi.class, params);
+            if (!response.getBody().isSuccessfull()){
+                ResponseApi responseApi=new ResponseApi(false,response.getBody().getMessage(),new Date().toString(),response.getBody().getData());
 
-            appUser = restTemplate.getForObject(uri, AppUser.class, params);
-        System.out.println(appUser.getUsername());
-
-        return appUser;
+               }
+            return response;
 
 
     }
 
 
-    public List<AppUser> getAllUsers(){
+    public ResponseEntity<?> getAllUsers(){
 
         final String uri="http://localhost:8085/api/authenticate/userList";
-        return Arrays.stream(restTemplate.getForObject(uri, AppUser[].class)).collect(Collectors.toList());
+        response=restTemplate.getForEntity(uri, ResponseApi.class);
+        if (!response.getBody().isSuccessfull()){
+            throw new ApiException(response.getBody().getMessage());
+        }
+        return response;
     }
 
 
