@@ -65,9 +65,13 @@ public class UserApiServiceImpl {
         response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
         if (!response.getBody().isSuccessfull()){
 
+
                System.out.println( "register   "+response.getBody().getMessage().toString());
 
            }
+        else {
+            System.out.println( "register   "+"User Registered Successfully");
+        }
         return response;
 
         }
