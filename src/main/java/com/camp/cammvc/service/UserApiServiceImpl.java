@@ -63,9 +63,10 @@ public class UserApiServiceImpl {
         final String uri = "http://localhost:8085/api/authenticate/register";
         restTemplate.setErrorHandler(new MyErrorHandler());
         response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
-        System.out.println("message" + response.getBody().getMessage());
-           if (!response.getBody().isSuccessfull()){
-               throw new ApiException(response.getBody().getMessage());
+        if (!response.getBody().isSuccessfull()){
+
+               System.out.println( "register   "+response.getBody().getMessage().toString());
+
            }
         return response;
 
