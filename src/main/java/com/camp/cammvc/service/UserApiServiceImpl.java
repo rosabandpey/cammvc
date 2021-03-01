@@ -45,14 +45,25 @@ public class UserApiServiceImpl {
     }
 
 
-    public ResponseEntity<?> getAllUsers(){
+    public List<AppUser> getAllUsers(){
 
         final String uri="http://localhost:8085/api/authenticate/userList";
         response=restTemplate.getForEntity(uri, ResponseApi.class);
+        List<AppUser> users=(response.getBody().getData());
+        //List<AppUser> users=Arrays.asList(restTemplate.getForObject(uri, AppUser.class));
+        // Arrays.asList(restTemplate.getForObject(uri, AppUser.class));
+        //AppUser[] users=  restTemplate.getForObject(uri, AppUser[].class());
+        //List list=Arrays.asList(users);
+        //List<AppUser> users= (AppUser) response.getBody().getData();
         if (!response.getBody().isSuccessfull()){
-            throw new ApiException(response.getBody().getMessage());
+            System.out.println( "AllUser   "+response.getBody().getMessage().toString());
         }
-        return response;
+        else {
+            System.out.println( "AllUser"+"User List Retrieved Successfully");
+
+            return users;
+        }
+        return users;
     }
 
 

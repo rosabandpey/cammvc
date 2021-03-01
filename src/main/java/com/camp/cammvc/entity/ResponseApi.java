@@ -3,6 +3,7 @@ package com.camp.cammvc.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResponseApi implements Serializable {
@@ -11,12 +12,12 @@ public class ResponseApi implements Serializable {
     private boolean isSuccessfull;
     private String message;
     private String Date;
-    private Object data;
+    private List<AppUser> data;
 
     public ResponseApi() {
     }
 
-    public ResponseApi(boolean isSuccessfull, String message, String date, Object data) {
+    public ResponseApi(boolean isSuccessfull, String message, String date, List<AppUser> data) {
         this.isSuccessfull = isSuccessfull;
         this.message = message;
         Date = date;
@@ -47,11 +48,11 @@ public class ResponseApi implements Serializable {
         Date = date;
     }
 
-    public Object getData() {
+    public List<AppUser> getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(List<AppUser> data) {
         this.data = data;
     }
 
