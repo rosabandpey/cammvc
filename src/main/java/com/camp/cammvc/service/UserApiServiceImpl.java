@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,18 +30,29 @@ public class UserApiServiceImpl {
     AppUser appUser;
     ResponseEntity<ResponseApi> response;
 
-    public ResponseEntity<?> getByUsername(String username){
+    public List<AppUser> getByUsername(String username){
 
             final String uri = "http://localhost:8085/api/authenticate/getByUsername/{username}";
+           // URI targetURL= UriComponentsBuilder.fromUriString(uri)
+                //    .queryParam("username", username)
+               //     .build()
+               //     .encode()
+               //     .toUri();
+       // System.out.println( "URL   "+targetURL);
            // restTemplate.setErrorHandler(new MyErrorHandler());
             Map<String, String> params = new HashMap<String, String>();
             params.put("username", username);
-            response = restTemplate.getForEntity(uri, ResponseApi.class, params);
+            response = restTemplate.getForEntity(uri, ResponseApi.class,params);
+            List<AppUser> users=(response.getBody().getData());
             if (!response.getBody().isSuccessfull()){
-                ResponseApi responseApi=new ResponseApi(false,response.getBody().getMessage(),new Date().toString(),response.getBody().getData());
+               // ResponseApi responseApi=new ResponseApi(false,response.getBody().getMessage(),new Date().toString(),response.getBody().getData());
+                System.out.println( "User   "+response.getBody().getMessage().toString());
+               } else {
+                System.out.println( "User  "+"User Retrieved Successfully");
 
-               }
-            return response;
+                return users;
+            }
+            return users;
 
 
     }
@@ -59,7 +72,7 @@ public class UserApiServiceImpl {
             System.out.println( "AllUser   "+response.getBody().getMessage().toString());
         }
         else {
-            System.out.println( "AllUser"+"User List Retrieved Successfully");
+            System.out.println( "AllUser "+" User List Retrieved Successfully");
 
             return users;
         }

@@ -28,7 +28,7 @@ public class UserController {
     private UserApiServiceImpl userApiService;
 
 
-    @GetMapping("/getUser")
+    @GetMapping("/getUser/{username}")
     public String getByUsername(@PathVariable("username") String username,Model model){
         //ResponseEntity<?> responseapi=userApiService.getByUsername(username);
 

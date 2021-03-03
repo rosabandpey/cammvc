@@ -45,7 +45,7 @@ public class MyErrorController implements ErrorController {
             }
         }*/
 
-        model.addAttribute("errorapi",responseApi.getMessage());
+       // model.addAttribute("errorapi",responseApi.getMessage());
         return "error";
     }
 
