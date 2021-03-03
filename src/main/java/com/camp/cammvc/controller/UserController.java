@@ -30,11 +30,8 @@ public class UserController {
 
     @GetMapping("/getUser/{username}")
     public String getByUsername(@PathVariable("username") String username,Model model){
-        //ResponseEntity<?> responseapi=userApiService.getByUsername(username);
 
-        // System.out.println(responseApi.getUsername());
         model.addAttribute("user",userApiService.getByUsername(username) );
-        //model.addAttribute("getUser",userApiService.getByUsername(username));
         return "user";
     }
 
@@ -65,7 +62,7 @@ public class UserController {
 
     @RequestMapping(path="/create",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public String register(Model model, AppUser appUser)  {
-       // model.addAttribute("responseApi", responseApi);
+
         userApiService.register(appUser) ;
         return "redirect:/allUser";
     }

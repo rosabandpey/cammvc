@@ -32,23 +32,18 @@ public class UserApiServiceImpl {
 
     public List<AppUser> getByUsername(String username){
 
+
             final String uri = "http://localhost:8085/api/authenticate/getByUsername/{username}";
-           // URI targetURL= UriComponentsBuilder.fromUriString(uri)
-                //    .queryParam("username", username)
-               //     .build()
-               //     .encode()
-               //     .toUri();
-       // System.out.println( "URL   "+targetURL);
-           // restTemplate.setErrorHandler(new MyErrorHandler());
+            restTemplate.setErrorHandler(new MyErrorHandler());
             Map<String, String> params = new HashMap<String, String>();
             params.put("username", username);
-            response = restTemplate.getForEntity(uri, ResponseApi.class,params);
-            List<AppUser> users=(response.getBody().getData());
+            response = restTemplate.getForEntity(uri, ResponseApi.class, params);
+            List<AppUser> users = (response.getBody().getData());
+
             if (!response.getBody().isSuccessfull()){
-               // ResponseApi responseApi=new ResponseApi(false,response.getBody().getMessage(),new Date().toString(),response.getBody().getData());
-                System.out.println( "User   "+response.getBody().getMessage().toString());
+                System.out.println( "myUser   "+response.getBody().getMessage().toString());
                } else {
-                System.out.println( "User  "+"User Retrieved Successfully");
+                System.out.println( "myUser  "+"User Retrieved Successfully");
 
                 return users;
             }
@@ -61,13 +56,10 @@ public class UserApiServiceImpl {
     public List<AppUser> getAllUsers(){
 
         final String uri="http://localhost:8085/api/authenticate/userList";
+        restTemplate.setErrorHandler(new MyErrorHandler());
         response=restTemplate.getForEntity(uri, ResponseApi.class);
         List<AppUser> users=(response.getBody().getData());
-        //List<AppUser> users=Arrays.asList(restTemplate.getForObject(uri, AppUser.class));
-        // Arrays.asList(restTemplate.getForObject(uri, AppUser.class));
-        //AppUser[] users=  restTemplate.getForObject(uri, AppUser[].class());
-        //List list=Arrays.asList(users);
-        //List<AppUser> users= (AppUser) response.getBody().getData();
+
         if (!response.getBody().isSuccessfull()){
             System.out.println( "AllUser   "+response.getBody().getMessage().toString());
         }

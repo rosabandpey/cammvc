@@ -17,21 +17,21 @@ import java.util.Date;
 public class MyErrorController implements ErrorController {
 
     private final ErrorAttributes errorAttributes;
-
+    ResponseApi responseApi;
     public MyErrorController(ErrorAttributes errorAttributes) {
         this.errorAttributes = errorAttributes;
     }
 
     @RequestMapping("/error")
-    public String handleError(Model model, ResponseApi responseApi,  WebRequest webRequest,HttpServletRequest request) {
+    public String handleError(Model model,  WebRequest webRequest,HttpServletRequest request) {
 
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         //System.out.println(status);
-       /* if (status != null) {
+        if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if(statusCode == HttpStatus.NOT_FOUND.value()) {
-                final Throwable error1 = errorAttributes.getError(webRequest);
+               // final Throwable error1 = errorAttributes.getError(webRequest);
 
                 responseApi=new ResponseApi(false,"User Not Found",new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
@@ -39,11 +39,11 @@ public class MyErrorController implements ErrorController {
             }
             else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 final Throwable error = errorAttributes.getError(webRequest);
-                responseApi=new ResponseApi(false,error.getMessage(),new Date().toString(),null);
+                responseApi=new ResponseApi(false,"Something went wrong",new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
                 return "error-500";
             }
-        }*/
+        }
 
        // model.addAttribute("errorapi",responseApi.getMessage());
         return "error";
