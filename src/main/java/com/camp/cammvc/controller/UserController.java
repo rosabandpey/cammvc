@@ -67,6 +67,19 @@ public class UserController {
         return "redirect:/allUser";
     }
 
+    @RequestMapping(path = {"/login"},method = {RequestMethod.GET,RequestMethod.POST})
+    public String loginPage(Model model,AppUser appUser)
+    {
+        model.addAttribute("appUser", appUser);
+        return "login";
+    }
+
+    @RequestMapping(path="/loginPage",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String login(Model model, AppUser appUser)  {
+
+        userApiService.login(appUser) ;
+        return "redirect:/allUser";
+    }
 
 
 }

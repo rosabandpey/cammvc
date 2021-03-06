@@ -32,7 +32,6 @@ public class UserApiServiceImpl {
 
     public List<AppUser> getByUsername(String username){
 
-
             final String uri = "http://localhost:8085/api/authenticate/getByUsername/{username}";
             restTemplate.setErrorHandler(new MyErrorHandler());
             Map<String, String> params = new HashMap<String, String>();
@@ -53,6 +52,8 @@ public class UserApiServiceImpl {
     }
 
 
+
+
     public List<AppUser> getAllUsers(){
 
         final String uri="http://localhost:8085/api/authenticate/userList";
@@ -71,7 +72,23 @@ public class UserApiServiceImpl {
         return users;
     }
 
+    public  ResponseEntity<?> login(AppUser appUser)  {
 
+        final String uri = "http://localhost:8085/api/authenticate/login";
+        restTemplate.setErrorHandler(new MyErrorHandler());
+        ResponseEntity<?> responseEntity = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
+        if (responseEntity.getStatusCodeValue()==200){
+
+            System.out.println( "login   "+"login Successfully");
+
+
+        }
+        else {
+            System.out.println( "login   "+responseEntity.getBody().toString());
+        }
+        return responseEntity;
+
+    }
 
 
     public  ResponseEntity<?> register(AppUser appUser)  {
