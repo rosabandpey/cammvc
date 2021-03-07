@@ -25,15 +25,15 @@ public class GlobalExceptionHandler {
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
         return  new ResponseEntity<>(responseApi,HttpStatus.NOT_FOUND);
     } */
-
-    /*
-    @ExceptionHandler(Exception.class)
-    public ResponseApi apiException(Exception exception, WebRequest request){
+/*
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(ApiException.class)
+    public ResponseEntity<?> apiException(ApiException exception, WebRequest request){
 
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
-        return responseApi;
+        return new ResponseEntity<>(responseApi,HttpStatus.FORBIDDEN);
 
-    }*/
+    }
 
 /*
     @ExceptionHandler(Exception.class)

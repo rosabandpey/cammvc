@@ -37,7 +37,11 @@ public class UserApiServiceImpl {
             restTemplate.setErrorHandler(new MyErrorHandler());
             Map<String, String> params = new HashMap<String, String>();
             params.put("username", username);
-            response = restTemplate.getForEntity(uri, ResponseApi.class, params);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth(responseToken.getToken());
+            HttpEntity request = new HttpEntity(headers);
+            response =  restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class,params);
+            //response = restTemplate.getForEntity(uri, ResponseApi.class, params);
             List<AppUser> users = (response.getBody().getData());
 
             if (!response.getBody().isSuccessfull()){
@@ -67,6 +71,7 @@ public class UserApiServiceImpl {
 
         if (!response.getBody().isSuccessfull()){
             System.out.println( "AllUser   "+response.getBody().getMessage().toString());
+
         }
         else {
             System.out.println( "AllUser "+" User List Retrieved Successfully");

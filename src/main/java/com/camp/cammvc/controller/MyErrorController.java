@@ -30,7 +30,13 @@ public class MyErrorController implements ErrorController {
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
 
-            if(statusCode == HttpStatus.NOT_FOUND.value()) {
+            if(statusCode == HttpStatus.FORBIDDEN.value()) {
+                responseApi=new ResponseApi(false,"FORBIDDEN",new Date().toString(),null);
+                model.addAttribute("responseApi", responseApi);
+                return "error-403";
+            }
+
+            else if(statusCode == HttpStatus.NOT_FOUND.value()) {
                // final Throwable error1 = errorAttributes.getError(webRequest);
 
                 responseApi=new ResponseApi(false,"User Not Found",new Date().toString(),null);
@@ -43,6 +49,8 @@ public class MyErrorController implements ErrorController {
                 model.addAttribute("responseApi", responseApi);
                 return "error-500";
             }
+
+
         }
 
        // model.addAttribute("errorapi",responseApi.getMessage());

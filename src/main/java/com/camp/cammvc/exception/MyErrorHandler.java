@@ -30,7 +30,10 @@ public class MyErrorHandler implements ResponseErrorHandler {
             // http status code e.g. `500 INTERNAL_SERVER_ERROR`
             System.out.println(response.getStatusCode());
 
-        } else if (response.getStatusCode().series() == HttpStatus.Series.CLIENT_ERROR) {
+        }
+
+
+        else if (response.getStatusCode().series() == HttpStatus.Series.CLIENT_ERROR) {
             // handle 4xx errors
             // raw http status code e.g `404`
             System.out.println(response.getRawStatusCode());
@@ -38,8 +41,15 @@ public class MyErrorHandler implements ResponseErrorHandler {
             // http status code e.g. `404 NOT_FOUND`
             System.out.println(response.getStatusCode());
 
+
             // get response body
             System.out.println(response.getBody());
+
+            if (response.getStatusCode().value() == HttpStatus.FORBIDDEN.value()) {
+                throw new ApiException("rosa forbidden");
+
+            }
         }
+
     }
 }
