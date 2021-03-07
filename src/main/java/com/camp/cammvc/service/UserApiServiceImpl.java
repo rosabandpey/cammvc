@@ -1,12 +1,13 @@
 package com.camp.cammvc.service;
 
+import com.camp.cammvc.entity.ResponseToken;
 import com.camp.cammvc.exception.MyErrorHandler;
 import com.camp.cammvc.entity.AppUser;
 import com.camp.cammvc.entity.ResponseApi;
 import com.camp.cammvc.exception.ApiException;
 import com.camp.cammvc.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,7 +22,7 @@ public class UserApiServiceImpl {
 
 
 
-
+    ResponseToken responseToken=new ResponseToken();
 
     @Autowired
     private RestTemplate restTemplate;
@@ -58,7 +59,10 @@ public class UserApiServiceImpl {
 
         final String uri="http://localhost:8085/api/authenticate/userList";
         restTemplate.setErrorHandler(new MyErrorHandler());
-        response=restTemplate.getForEntity(uri, ResponseApi.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(responseToken.getToken());
+        HttpEntity request = new HttpEntity(headers);
+        response =  restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class);
         List<AppUser> users=(response.getBody().getData());
 
         if (!response.getBody().isSuccessfull()){
@@ -78,6 +82,18 @@ public class UserApiServiceImpl {
         restTemplate.setErrorHandler(new MyErrorHandler());
         ResponseEntity<?> responseEntity = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
         if (responseEntity.getStatusCodeValue()==200){
+
+            HttpHeaders headers= responseEntity.getHeaders();
+            String token= headers.get("Authorization").toString();
+            //String token = headers.toString().toLowerCase() ;
+            System.out.println( "login   "+token);
+            if (headers.containsKey("Authorization")) {
+
+                System.out.println( "login   "+"header get Successfully");
+                System.out.println( "login   "+token);
+
+                responseToken.setToken(token);
+            }
 
             System.out.println( "login   "+"login Successfully");
 
