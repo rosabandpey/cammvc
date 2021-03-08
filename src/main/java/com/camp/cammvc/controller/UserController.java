@@ -4,6 +4,7 @@ package com.camp.cammvc.controller;
 import com.camp.cammvc.entity.AppUser;
 import com.camp.cammvc.entity.ResponseApi;
 import com.camp.cammvc.exception.ApiException;
+import com.camp.cammvc.service.UserApiService;
 import com.camp.cammvc.service.UserApiServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class UserController {
 
 
     @Autowired
-    private UserApiServiceImpl userApiService;
+    private UserApiService userApiService;
 
 
     @GetMapping("/getUser/{username}")
@@ -79,6 +80,14 @@ public class UserController {
 
         userApiService.login(appUser) ;
         return "redirect:/allUser";
+    }
+
+
+    @RequestMapping(path = {"/logout"},method = {RequestMethod.GET,RequestMethod.POST})
+    public String logout()
+    {
+        userApiService.logout();
+        return "logout";
     }
 
 

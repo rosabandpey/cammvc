@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 
-public class UserApiServiceImpl {
+public class UserApiServiceImpl implements UserApiService{
 
 
 
@@ -108,6 +108,13 @@ public class UserApiServiceImpl {
 
     }
 
+
+    public  String logout()  {
+
+        responseToken.setToken("");
+        System.out.println( " logout  "+responseToken.getToken());
+        return " logout Successfully";
+    }
 
     public  ResponseEntity<?> register(AppUser appUser)  {
 
