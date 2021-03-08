@@ -5,6 +5,7 @@ import com.camp.cammvc.entity.ErrorMessage;
 import com.camp.cammvc.entity.ResponseApi;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -25,13 +26,15 @@ public class GlobalExceptionHandler {
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
         return  new ResponseEntity<>(responseApi,HttpStatus.NOT_FOUND);
     } */
-/*
+
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(ApiException.class)
-    public ResponseEntity<?> apiException(ApiException exception, WebRequest request){
+    public String apiException(ApiException exception, WebRequest request, Model model){
+
 
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
-        return new ResponseEntity<>(responseApi,HttpStatus.FORBIDDEN);
+        model.addAttribute(responseApi);
+        return "error-403";
 
     }
 

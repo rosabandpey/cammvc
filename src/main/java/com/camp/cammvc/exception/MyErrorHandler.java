@@ -46,7 +46,7 @@ public class MyErrorHandler implements ResponseErrorHandler {
             System.out.println(response.getBody());
 
             if (response.getStatusCode().value() == HttpStatus.FORBIDDEN.value()) {
-                throw new ApiException("rosa forbidden");
+                throw new ApiException("Forbidden Access");
 
             }
         }
