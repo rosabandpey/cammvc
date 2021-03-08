@@ -7,6 +7,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.annotation.ApplicationScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.time.Duration;
 
@@ -28,7 +29,7 @@ public class CammvcApplication {
     }
 
     @Bean
-    @ApplicationScope
+    @SessionScope
     public ResponseToken applicationScopedBean() {
         return new ResponseToken();
     }
