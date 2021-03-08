@@ -28,7 +28,6 @@ public class UserApiServiceImpl {
     private RestTemplate restTemplate;
 
 
-    AppUser appUser;
     ResponseEntity<ResponseApi> response;
 
     public List<AppUser> getByUsername(String username){
@@ -41,7 +40,6 @@ public class UserApiServiceImpl {
             headers.setBearerAuth(responseToken.getToken());
             HttpEntity request = new HttpEntity(headers);
             response =  restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class,params);
-            //response = restTemplate.getForEntity(uri, ResponseApi.class, params);
             List<AppUser> users = (response.getBody().getData());
 
             if (!response.getBody().isSuccessfull()){
@@ -90,7 +88,6 @@ public class UserApiServiceImpl {
 
             HttpHeaders headers= responseEntity.getHeaders();
             String token= headers.get("Authorization").toString();
-            //String token = headers.toString().toLowerCase() ;
             System.out.println( "login   "+token);
             if (headers.containsKey("Authorization")) {
 
@@ -119,9 +116,7 @@ public class UserApiServiceImpl {
         response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
         if (!response.getBody().isSuccessfull()){
 
-
                System.out.println( "register   "+response.getBody().getMessage().toString());
-
            }
         else {
             System.out.println( "register   "+"User Registered Successfully");

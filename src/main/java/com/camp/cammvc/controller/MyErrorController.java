@@ -26,15 +26,12 @@ public class MyErrorController implements ErrorController {
     public String handleError(Model model,  WebRequest webRequest,HttpServletRequest request) {
 
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-        //System.out.println(status);
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
 
 
 
             if(statusCode == HttpStatus.NOT_FOUND.value()) {
-               // final Throwable error1 = errorAttributes.getError(webRequest);
-
                 responseApi=new ResponseApi(false,"User Not Found",new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
                 return "error-404";
@@ -49,7 +46,6 @@ public class MyErrorController implements ErrorController {
 
         }
 
-       // model.addAttribute("errorapi",responseApi.getMessage());
         return "error";
     }
 
