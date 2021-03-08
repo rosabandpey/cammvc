@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 public class UserApiServiceImpl implements UserApiService{
 
 
-
-    ResponseToken responseToken=new ResponseToken();
+    @Autowired
+    ResponseToken responseToken;
 
     @Autowired
     private RestTemplate restTemplate;
