@@ -83,10 +83,10 @@ public class UserApiServiceImpl implements UserApiService{
 
         final String uri = "http://localhost:8085/api/authenticate/login";
         restTemplate.setErrorHandler(new MyErrorHandler());
-        ResponseEntity<?> responseEntity = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
-        if (responseEntity.getStatusCodeValue()==200){
+        response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
+        if (response.getStatusCodeValue()==200){
 
-            HttpHeaders headers= responseEntity.getHeaders();
+            HttpHeaders headers= response.getHeaders();
             String token= headers.get("Authorization").toString();
             System.out.println( "login   "+token);
             if (headers.containsKey("Authorization")) {
@@ -102,9 +102,9 @@ public class UserApiServiceImpl implements UserApiService{
 
         }
         else {
-            System.out.println( "login   "+responseEntity.getBody().toString());
+            System.out.println( "login   "+response.getBody().toString());
         }
-        return responseEntity;
+        return response;
 
     }
 
