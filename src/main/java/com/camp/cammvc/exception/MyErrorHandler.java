@@ -25,10 +25,10 @@ public class MyErrorHandler implements ResponseErrorHandler {
         if (response.getStatusCode().series() == HttpStatus.Series.SERVER_ERROR) {
             // handle 5xx errors
             // raw http status code e.g `500`
-            System.out.println(response.getRawStatusCode());
+            System.out.println("500"+response.getRawStatusCode());
 
             // http status code e.g. `500 INTERNAL_SERVER_ERROR`
-            System.out.println(response.getStatusCode());
+            System.out.println("500"+response.getStatusCode());
 
         }
 
@@ -36,19 +36,13 @@ public class MyErrorHandler implements ResponseErrorHandler {
         else if (response.getStatusCode().series() == HttpStatus.Series.CLIENT_ERROR) {
             // handle 4xx errors
             // raw http status code e.g `404`
-            System.out.println(response.getRawStatusCode());
+            System.out.println("CLIENT_ERROR"+response.getRawStatusCode());
 
             // http status code e.g. `404 NOT_FOUND`
-            System.out.println(response.getStatusCode());
+            System.out.println("CLIENT_ERROR"+response.getStatusCode());
 
 
-            // get response body
-            System.out.println(response.getBody());
 
-            if (response.getStatusCode().value() == HttpStatus.FORBIDDEN.value()) {
-                throw new ApiException("Forbidden Access");
-
-            }
         }
 
     }

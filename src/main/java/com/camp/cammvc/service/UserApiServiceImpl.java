@@ -33,7 +33,7 @@ public class UserApiServiceImpl implements UserApiService{
     public List<AppUser> getByUsername(String username){
 
             final String uri = "http://localhost:8085/api/authenticate/getByUsername/{username}";
-            restTemplate.setErrorHandler(new MyErrorHandler());
+            //restTemplate.setErrorHandler(new MyErrorHandler());
             Map<String, String> params = new HashMap<String, String>();
             params.put("username", username);
             HttpHeaders headers = new HttpHeaders();
@@ -60,7 +60,7 @@ public class UserApiServiceImpl implements UserApiService{
     public List<AppUser> getAllUsers(){
 
         final String uri="http://localhost:8085/api/authenticate/userList";
-        restTemplate.setErrorHandler(new MyErrorHandler());
+        //restTemplate.setErrorHandler(new MyErrorHandler());
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(responseToken.getToken());
         HttpEntity request = new HttpEntity(headers);
@@ -82,7 +82,7 @@ public class UserApiServiceImpl implements UserApiService{
     public  ResponseEntity<?> login(AppUser appUser)  {
 
         final String uri = "http://localhost:8085/api/authenticate/login";
-        restTemplate.setErrorHandler(new MyErrorHandler());
+       // restTemplate.setErrorHandler(new MyErrorHandler());
         response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
         if (response.getStatusCodeValue()==200){
 
@@ -119,7 +119,7 @@ public class UserApiServiceImpl implements UserApiService{
     public  ResponseEntity<?> register(AppUser appUser)  {
 
         final String uri = "http://localhost:8085/api/authenticate/register";
-        restTemplate.setErrorHandler(new MyErrorHandler());
+       // restTemplate.setErrorHandler(new MyErrorHandler());
         response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
         if (!response.getBody().isSuccessfull()){
 
