@@ -42,14 +42,16 @@ public class UserApiServiceImpl implements UserApiService{
             response =  restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class,params);
             List<AppUser> users = (response.getBody().getData());
 
-            if (!response.getBody().isSuccessfull()){
+            if (!response.getBody().isSuccessfull() ){
                 System.out.println( "myUser   "+response.getBody().getMessage().toString());
+                    if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
+                        throw new NotFoundException(response.getBody().getMessage());
+                    }
                 throw new ApiException(response.getBody().getMessage());
 
                } else {
                 System.out.println( "myUser  "+"User Retrieved Successfully");
 
-                //return users;
             }
             return users;
 
@@ -71,6 +73,9 @@ public class UserApiServiceImpl implements UserApiService{
 
         if (!response.getBody().isSuccessfull()){
             System.out.println( "AllUser   "+response.getBody().getMessage().toString());
+            if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
+                throw new NotFoundException(response.getBody().getMessage());
+            }
             throw new ApiException(response.getBody().getMessage());
 
         }

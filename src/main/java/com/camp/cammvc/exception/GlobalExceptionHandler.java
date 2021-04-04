@@ -20,7 +20,7 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
 
-    //@ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public String notFoundException(NotFoundException exception, WebRequest request, Model model){
 

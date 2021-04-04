@@ -40,7 +40,7 @@ public class MyErrorHandler implements ResponseErrorHandler {
 
             // http status code e.g. `404 NOT_FOUND`
             System.out.println("CLIENT_ERROR"+response.getStatusCode());
-
+         // if  (response.getStatusCode()==HttpStatus.FORBIDDEN)
 
 
         }
