@@ -44,10 +44,12 @@ public class UserApiServiceImpl implements UserApiService{
 
             if (!response.getBody().isSuccessfull()){
                 System.out.println( "myUser   "+response.getBody().getMessage().toString());
+                throw new ApiException(response.getBody().getMessage());
+
                } else {
                 System.out.println( "myUser  "+"User Retrieved Successfully");
 
-                return users;
+                //return users;
             }
             return users;
 
@@ -60,7 +62,7 @@ public class UserApiServiceImpl implements UserApiService{
     public List<AppUser> getAllUsers(){
 
         final String uri="http://localhost:8085/api/authenticate/userList";
-        //restTemplate.setErrorHandler(new MyErrorHandler());
+        restTemplate.setErrorHandler(new MyErrorHandler());
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(responseToken.getToken());
         HttpEntity request = new HttpEntity(headers);
@@ -69,12 +71,12 @@ public class UserApiServiceImpl implements UserApiService{
 
         if (!response.getBody().isSuccessfull()){
             System.out.println( "AllUser   "+response.getBody().getMessage().toString());
+            throw new ApiException(response.getBody().getMessage());
 
         }
         else {
             System.out.println( "AllUser "+" User List Retrieved Successfully");
 
-            return users;
         }
         return users;
     }
@@ -103,6 +105,7 @@ public class UserApiServiceImpl implements UserApiService{
         }
         else {
             System.out.println( "login   "+response.getBody().toString());
+            throw new ApiException(response.getBody().toString());
         }
         return response;
 
@@ -124,6 +127,7 @@ public class UserApiServiceImpl implements UserApiService{
         if (!response.getBody().isSuccessfull()){
 
                System.out.println( "register   "+response.getBody().getMessage().toString());
+               throw new ApiException(response.getBody().getMessage());
            }
         else {
             System.out.println( "register   "+"User Registered Successfully");
