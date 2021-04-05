@@ -43,7 +43,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public String globalException(Exception exception, WebRequest request, Model model) throws JsonProcessingException {
 
-        ResponseApi responseApi=new ResponseApi(false,"SomeThing Went Wrong",new Date().toString(),null);
+        ResponseApi responseApi=new ResponseApi(false,exception.getCause().getMessage(),new Date().toString(),null);
+
         model.addAttribute(responseApi);
         return "error-500";
 
