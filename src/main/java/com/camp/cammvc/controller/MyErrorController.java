@@ -45,7 +45,7 @@ public class MyErrorController implements ErrorController {
 
             else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 final Throwable error = errorAttributes.getError(webRequest);
-                responseApi=new ResponseApi(false,"Something went wrong",new Date().toString(),null);
+                responseApi=new ResponseApi(false,"Internal Server Error",new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
                 return "error-500";
             }

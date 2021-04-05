@@ -33,7 +33,7 @@ public class UserApiServiceImpl implements UserApiService{
     public List<AppUser> getByUsername(String username){
 
             final String uri = "http://localhost:8085/api/authenticate/getByUsername/{username}";
-            //restTemplate.setErrorHandler(new MyErrorHandler());
+            restTemplate.setErrorHandler(new MyErrorHandler());
             Map<String, String> params = new HashMap<String, String>();
             params.put("username", username);
             HttpHeaders headers = new HttpHeaders();
@@ -44,10 +44,10 @@ public class UserApiServiceImpl implements UserApiService{
 
             if (!response.getBody().isSuccessfull() ){
                 System.out.println( "myUser   "+response.getBody().getMessage().toString());
-                    if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
-                        throw new NotFoundException(response.getBody().getMessage());
-                    }
-                throw new ApiException(response.getBody().getMessage());
+             //      if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
+              //          throw new NotFoundException(response.getBody().getMessage());
+              //     }
+            //    throw new ApiException(response.getBody().getMessage());
 
                } else {
                 System.out.println( "myUser  "+"User Retrieved Successfully");
@@ -73,10 +73,10 @@ public class UserApiServiceImpl implements UserApiService{
 
         if (!response.getBody().isSuccessfull()){
             System.out.println( "AllUser   "+response.getBody().getMessage().toString());
-            if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
-                throw new NotFoundException(response.getBody().getMessage());
-            }
-            throw new ApiException(response.getBody().getMessage());
+          //  if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
+          //      throw new NotFoundException(response.getBody().getMessage());
+          //  }
+           // throw new ApiException(response.getBody().getMessage());
 
         }
         else {
@@ -89,7 +89,7 @@ public class UserApiServiceImpl implements UserApiService{
     public  ResponseEntity<?> login(AppUser appUser)  {
 
         final String uri = "http://localhost:8085/api/authenticate/login";
-       // restTemplate.setErrorHandler(new MyErrorHandler());
+        restTemplate.setErrorHandler(new MyErrorHandler());
         response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
         if (response.getStatusCodeValue()==200){
 
@@ -110,7 +110,7 @@ public class UserApiServiceImpl implements UserApiService{
         }
         else {
             System.out.println( "login   "+response.getBody().toString());
-            throw new ApiException(response.getBody().toString());
+          //  throw new ApiException(response.getBody().toString());
         }
         return response;
 
@@ -127,12 +127,12 @@ public class UserApiServiceImpl implements UserApiService{
     public  ResponseEntity<?> register(AppUser appUser)  {
 
         final String uri = "http://localhost:8085/api/authenticate/register";
-       // restTemplate.setErrorHandler(new MyErrorHandler());
+        restTemplate.setErrorHandler(new MyErrorHandler());
         response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
         if (!response.getBody().isSuccessfull()){
 
                System.out.println( "register   "+response.getBody().getMessage().toString());
-               throw new ApiException(response.getBody().getMessage());
+          //    throw new ApiException(response.getBody().getMessage());
            }
         else {
             System.out.println( "register   "+"User Registered Successfully");
