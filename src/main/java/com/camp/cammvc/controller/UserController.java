@@ -65,7 +65,7 @@ public class UserController {
     public String register(Model model, AppUser appUser)  {
 
         userApiService.register(appUser) ;
-        return "redirect:/allUser";
+        return "redirect:/add-edit-user";
     }
 
     @GetMapping(path = {"/login"})

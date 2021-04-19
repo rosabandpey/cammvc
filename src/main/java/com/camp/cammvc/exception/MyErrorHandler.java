@@ -64,10 +64,11 @@ public class MyErrorHandler implements ResponseErrorHandler {
                 while((line =  bR.readLine()) != null){
 
                     responseStrBuilder.append(line);
-                }
 
+                }
+               
                 try {
-                    result= new JSONObject(response.getBody().toString());
+                    result= new JSONObject(responseStrBuilder.toString());
                     Gson gson = new Gson();
                     responseApi = gson.fromJson(String.valueOf(result), ResponseApi.class); // deserializes json into target2
                 } catch (JSONException e) {
