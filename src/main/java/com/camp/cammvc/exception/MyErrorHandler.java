@@ -66,7 +66,7 @@ public class MyErrorHandler implements ResponseErrorHandler {
                     responseStrBuilder.append(line);
 
                 }
-               
+
                 try {
                     result= new JSONObject(responseStrBuilder.toString());
                     Gson gson = new Gson();
