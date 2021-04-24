@@ -3,12 +3,22 @@ package com.camp.cammvc.entity;
 public class ResponseToken {
 
     private String token;
+    private String username;
 
     public ResponseToken() {
     }
 
-    public ResponseToken(String token) {
+    public ResponseToken(String token, String username) {
         this.token = token;
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getToken() {

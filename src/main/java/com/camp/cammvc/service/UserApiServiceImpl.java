@@ -102,6 +102,7 @@ public class UserApiServiceImpl implements UserApiService{
                 System.out.println( "login   "+token);
 
                 responseToken.setToken(token);
+                responseToken.setUsername(appUser.getUsername());
             }
 
             System.out.println( "login   "+"login Successfully");
