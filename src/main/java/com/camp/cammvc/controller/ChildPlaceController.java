@@ -31,7 +31,7 @@ public class ChildPlaceController {
 
 
 
-    @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET})
     public String editUserById(Model model,ChildPlace childPlace)
     {
         model.addAttribute("childPlace", childPlace);
