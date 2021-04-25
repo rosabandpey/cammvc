@@ -6,18 +6,18 @@ import java.io.Serializable;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseApi implements Serializable {
+public class ResponseApi<T> implements Serializable {
 
 
     private boolean isSuccessfull;
     private String message;
     private String Date;
-    private List<AppUser> data;
+    private List<T> data;
 
     public ResponseApi() {
     }
 
-    public ResponseApi(boolean isSuccessfull, String message, String date, List<AppUser> data) {
+    public ResponseApi(boolean isSuccessfull, String message, String date, List<T> data) {
         this.isSuccessfull = isSuccessfull;
         this.message = message;
         Date = date;
@@ -48,11 +48,11 @@ public class ResponseApi implements Serializable {
         Date = date;
     }
 
-    public List<AppUser> getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(List<AppUser> data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 

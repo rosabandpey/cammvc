@@ -37,6 +37,31 @@
                                    id="ChildAddress" placeholder="Address" />
                         </div>
 
+
+
+                        <div th:switch="${place}" class="container my-5">
+
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                <tr>
+
+                                    <th>Place Name</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="myplace : ${place}">
+                                    <td th:text="${myplace.placeName}"></td>
+                                    <input type="radio" th:field="*{p}" th:value="${ty}" />
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+
+
                         <div class="form-group col-md-8">
                             <label for="Location" class="col-form-label">Location</label>
                             <input type="text" th:field="*{childLocation}" class="form-control"
@@ -142,7 +167,7 @@
                                    id="PicnicTable" placeholder="PicnicTable" />
                         </div>
 
-                       
+
 
                         <div class="form-group col-md-8">
                             <label for="PetAllowed" class="col-form-label">PetAllowed</label>

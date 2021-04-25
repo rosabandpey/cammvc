@@ -2,23 +2,12 @@ package com.camp.cammvc.controller;
 
 
 import com.camp.cammvc.entity.AppUser;
-import com.camp.cammvc.entity.ResponseApi;
-import com.camp.cammvc.exception.ApiException;
 import com.camp.cammvc.service.UserApiService;
-import com.camp.cammvc.service.UserApiServiceImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import javax.websocket.server.PathParam;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/")

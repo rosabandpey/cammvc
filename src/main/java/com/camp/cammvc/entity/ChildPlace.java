@@ -1,8 +1,11 @@
 package com.camp.cammvc.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ChildPlace {
+public class ChildPlace  implements Serializable {
+
+    private static final long serialVersionUID = -6955836358739196257L;
 
     private long id;
 

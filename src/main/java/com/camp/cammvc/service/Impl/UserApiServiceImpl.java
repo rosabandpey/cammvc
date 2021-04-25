@@ -1,4 +1,4 @@
-package com.camp.cammvc.service;
+package com.camp.cammvc.service.Impl;
 
 import com.camp.cammvc.entity.ResponseToken;
 import com.camp.cammvc.exception.MyErrorHandler;
@@ -6,6 +6,7 @@ import com.camp.cammvc.entity.AppUser;
 import com.camp.cammvc.entity.ResponseApi;
 import com.camp.cammvc.exception.ApiException;
 import com.camp.cammvc.exception.NotFoundException;
+import com.camp.cammvc.service.UserApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 
-public class UserApiServiceImpl implements UserApiService{
+public class UserApiServiceImpl implements UserApiService {
 
 
     @Autowired
