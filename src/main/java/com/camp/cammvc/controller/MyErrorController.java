@@ -32,7 +32,7 @@ public class MyErrorController implements ErrorController {
 
 
             if(statusCode == HttpStatus.NOT_FOUND.value()) {
-                responseApi=new ResponseApi(false,"User Not Found",new Date().toString(),null);
+                responseApi=new ResponseApi(false,"myUser Not Found",new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
                 return "error-404";
             }

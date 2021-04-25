@@ -27,11 +27,12 @@ public class ChildPlaceController {
 
     @Autowired
     private PlaceService placeService;
+    String placeName;
 
     @RequestMapping(path="/savePlace",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String register(Model model, ChildPlace childPlace,@PathVariable("placeName") String placeName)  {
-
-        childPlaceService.registerChildPlace(childPlace,placeName) ;
+    public String register(Model model, ChildPlace childPlace,Place place)  {
+        //placeName=place.getPlaceName();
+        childPlaceService.registerChildPlace(childPlace) ;
         return "redirect:/add-edit-childPlace";
     }
 
@@ -41,6 +42,7 @@ public class ChildPlaceController {
     {
         model.addAttribute("childPlace", childPlace);
         model2.addAttribute("place",placeService.getAllPlaces());
+
         //model.addAttribute("place",places);
         return "add-edit-childPlace";
     }

@@ -10,7 +10,7 @@ public interface ChildPlaceService {
 
     public List<ChildPlace> getAllChildPlace();
 
-    public  ResponseEntity<?> registerChildPlace(ChildPlace childPlace,String placeName);
+    public  ResponseEntity<?> registerChildPlace(ChildPlace childPlace);
 
     public  ResponseEntity<?> updateChildPlace(ChildPlace childPlace);
 

@@ -12,6 +12,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,18 +36,21 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
     }
 
     @Override
-    public ResponseEntity<?> registerChildPlace(ChildPlace childPlace,String placeName) {
+    public ResponseEntity<?> registerChildPlace(ChildPlace childPlace) {
 
-        final String uri = "http://localhost:8085/api/childPlace/savePlace/{placeName}/{username}";
+        final String uri = "http://localhost:8085/api/childPlace/savePlace";
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(uri)
+                .queryParam("username", "ghadimi@gmail.com")
+                .queryParam("placeName", "MountainCamp");
         restTemplate.setErrorHandler(new MyErrorHandler());
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("username", responseToken.getUsername());
-        params.put("placeName", placeName);
+       // Map<String, String> params = new HashMap<String, String>();
+       // params.put("username", "ghadimi@gmail.com");
+      //  params.put("placeName", "MountainCamp");
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(responseToken.getToken());
         HttpEntity request = new HttpEntity(headers);
-        response =  restTemplate.exchange(uri, HttpMethod.POST, request, ResponseApi.class,params);
+        response =  restTemplate.postForEntity(uriBuilder.toUriString(),childPlace, ResponseApi.class);
 
         if (!response.getBody().isSuccessfull()){
 
