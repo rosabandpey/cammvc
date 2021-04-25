@@ -35,6 +35,7 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
         return null;
     }
 
+
     @Override
     public ResponseEntity<?> registerChildPlace(ChildPlace childPlace) {
 
@@ -43,14 +44,14 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
                 .queryParam("username", "ghadimi@gmail.com")
                 .queryParam("placeName", "MountainCamp");
         restTemplate.setErrorHandler(new MyErrorHandler());
-       // Map<String, String> params = new HashMap<String, String>();
-       // params.put("username", "ghadimi@gmail.com");
-      //  params.put("placeName", "MountainCamp");
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("username", "ghadimi@gmail.com");
+        params.put("placeName", "MountainCamp");
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(responseToken.getToken());
         HttpEntity request = new HttpEntity(headers);
-        response =  restTemplate.postForEntity(uriBuilder.toUriString(),childPlace, ResponseApi.class);
+        response =  restTemplate.postForEntity(uri,childPlace, ResponseApi.class,params);
 
         if (!response.getBody().isSuccessfull()){
 
