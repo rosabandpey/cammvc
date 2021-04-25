@@ -51,8 +51,9 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="myplace : ${place}">
-                                    <td th:text="${myplace.placeName}"></td>
-
+                                    <td >
+                                    <input type="radio" name="myplace" th:value="${myplace.id}" th:text="${myplace.placeName}">
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
