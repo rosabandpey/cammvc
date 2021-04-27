@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,17 +22,19 @@ public class ChildPlaceController {
     @Autowired
     private PlaceService placeService;
     String placeName;
+    String username;
+
 
     @RequestMapping(path="/savePlace",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public String register(Model model, ChildPlace childPlace)  {
-        //placeName=place.getPlaceName();
-        childPlaceService.registerChildPlace(childPlace) ;
-        return "redirect:/add-edit-child";
+        placeName="MountainCamp";
+        username="ghadimi@gmail.com";
+        childPlaceService.registerChildPlace(childPlace,username,placeName) ;
+        return "redirect:/edit";
     }
 
 
-
-    @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET})
+    @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
     public String editUserById(Model model,ChildPlace childPlace)
     {
         model.addAttribute("childPlace", childPlace);
