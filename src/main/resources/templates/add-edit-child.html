@@ -16,7 +16,7 @@
     <div class="card">
         <div class="card-body">
             <div class="col-md-10">
-                <form action="#" th:action="@{/place/savePlace}" th:object="${childPlace}"
+                <form action="#" th:action="@{/place/savePlace/{placeid}}" th:object="${childPlace}"
                       method="post">
                     <div class="row">
                         <div class="form-group col-md-8">
@@ -55,13 +55,10 @@
                                 <tr th:each="myplace : ${place}">
 
                                     <td >
-                                        <input type="radio" name="myplace" th:value="${myplace.id}"  th:id="${myplace.id}"  th:text="${myplace.placeName}">
+                                        <input type="radio" name="placeid" th:value="${myplace.id}"  th:id="${myplace.id}"  th:text="${myplace.placeName}">
 
                                     </td>
-                                    <form action="#"  th:action="@{/place/setPlace/{id}(id=${myplace.id})}"
-                                          th:object="${place}"
-                                          method="get">
-                                    </form>
+
                                 </tr>
 
                                 </tbody>
