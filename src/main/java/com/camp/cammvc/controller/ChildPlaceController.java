@@ -10,10 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping( "/place")
@@ -25,30 +22,33 @@ public class ChildPlaceController {
 
     @Autowired
     private PlaceService placeService;
+
+    //Place place;
    // String placeName;
     //String username;
 
 
-    @RequestMapping(path="/savePlace",method = {RequestMethod.POST,RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String register(Model model, ChildPlace childPlace, Place place, AppUser appUser)  {
-
+    @RequestMapping(path={"/savePlace"},method = {RequestMethod.POST,RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String register(Model model,@ModelAttribute ("place") Place place ,ChildPlace childPlace,Model model2, AppUser appUser, @RequestParam("myplace")long id ) {
        // placeName=place.getPlaceName();
        // System.out.println("placeName"+placeName);
         appUser.setId(3);
         childPlace.setUserChildPlace(appUser);
-        place.setId(1);
+        place.setId(id);
         childPlace.setMychildplace(place);
         childPlaceService.registerChildPlace(childPlace) ;
         return "redirect:/edit";
     }
 
 
+
+
     @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
-    public String editUserById(Model model, Model model2,ChildPlace childPlace)
+    public String editUserById(Model model, ChildPlace childPlace)
     {
 
         model.addAttribute("childPlace", childPlace);
-        model2.addAttribute("place",placeService.getAllPlaces());
+        model.addAttribute("place",placeService.getAllPlaces());
 
         //model.addAttribute("place",places);
         return "add-edit-child";
