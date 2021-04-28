@@ -28,13 +28,13 @@ public class ChildPlaceController {
     //String username;
 
 
-    @RequestMapping(path={"/savePlace/{placeid}"},method = {RequestMethod.POST,RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String register(Model model,@ModelAttribute ("place") Place place ,ChildPlace childPlace,Model model2, AppUser appUser,@RequestParam("placeid")String id ) {
+    @RequestMapping(path={"/savePlace"},method = {RequestMethod.POST,RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String register(Model model,@ModelAttribute ("place") Place place ,ChildPlace childPlace,Model model2, AppUser appUser,@RequestParam("placeid")long id ) {
        // placeName=place.getPlaceName();
        // System.out.println("placeName"+placeName);
         appUser.setId(3);
         childPlace.setUserChildPlace(appUser);
-        place.setId(Long.valueOf(id));
+        place.setId(id);
         System.out.println(place.getId());
         childPlace.setMychildplace(place);
         childPlaceService.registerChildPlace(childPlace) ;
