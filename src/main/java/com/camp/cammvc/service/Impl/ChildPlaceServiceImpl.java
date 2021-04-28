@@ -37,21 +37,18 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
 
 
     @Override
-    public ResponseEntity<?> registerChildPlace(ChildPlace childPlace,String username,String placeName) {
+    public ResponseEntity<?> registerChildPlace(ChildPlace childPlace) {
 
-        final String uri = "http://localhost:8085/api/childPlace/savePlace/{username}/{placeName}";
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(uri)
-                .queryParam("username", "ghadimi@gmail.com")
-                .queryParam("placeName", "MountainCamp");
+        final String uri = "http://localhost:8085/api/childPlace/savePlace";
+
         restTemplate.setErrorHandler(new MyErrorHandler());
         Map<String, String> params = new HashMap<String, String>();
-        params.put("username",username );
-        params.put("placeName",placeName);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(responseToken.getToken());
-        HttpEntity<ChildPlace> request = new HttpEntity<>(childPlace,headers);
-        response =  restTemplate.exchange(uri,HttpMethod.POST,request,ResponseApi.class,params);
+        HttpEntity<?> request = new HttpEntity<ChildPlace>(childPlace,headers);
+        response = restTemplate.postForEntity(uri, request,ResponseApi.class);
+        //response =  restTemplate.exchange(uri,HttpMethod.POST,request,ResponseApi.class);
 
         if (!response.getBody().isSuccessfull()){
 

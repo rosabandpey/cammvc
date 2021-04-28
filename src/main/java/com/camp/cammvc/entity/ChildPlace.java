@@ -9,6 +9,10 @@ public class ChildPlace  implements Serializable {
 
     private long id;
 
+    private Place mychildplace;
+
+    private AppUser userChildPlace;
+
     private String childName;
 
     private String childLocation;
@@ -57,8 +61,10 @@ public class ChildPlace  implements Serializable {
     public ChildPlace() {
     }
 
-    public ChildPlace(long id, String childName, String childLocation, String childDetails, String childCountry, String childCity, String childAddress, int childCellSignal, Date childLastVisit, int childCrowdness, int childManNoise, int childCleanness, int childSafty, int childWater, int childElectronic, int childShower, int childTrash, int childPicnicTable, int childToilet, int childWifi, int childFirePits, int childPetAllowed, int childADAaccessible) {
+    public ChildPlace(long id,Place mychildplace,AppUser userChildPlace ,String childName, String childLocation, String childDetails, String childCountry, String childCity, String childAddress, int childCellSignal, Date childLastVisit, int childCrowdness, int childManNoise, int childCleanness, int childSafty, int childWater, int childElectronic, int childShower, int childTrash, int childPicnicTable, int childToilet, int childWifi, int childFirePits, int childPetAllowed, int childADAaccessible) {
         this.id = id;
+        this.mychildplace = mychildplace;
+        this.userChildPlace = userChildPlace;
         this.childName = childName;
         this.childLocation = childLocation;
         this.childDetails = childDetails;
@@ -83,12 +89,29 @@ public class ChildPlace  implements Serializable {
         this.childADAaccessible = childADAaccessible;
     }
 
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Place getMychildplace() {
+        return mychildplace;
+    }
+
+    public void setMychildplace(Place mychildplace) {
+        this.mychildplace = mychildplace;
+    }
+
+    public AppUser getUserChildPlace() {
+        return userChildPlace;
+    }
+
+    public void setUserChildPlace(AppUser userChildPlace) {
+        this.userChildPlace = userChildPlace;
     }
 
     public String getChildName() {

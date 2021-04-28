@@ -52,6 +52,7 @@
                                 <tr th:each="myplace : ${place}">
                                     <td >
                                         <input type="radio" name="myplace" th:value="${myplace.id}" th:text="${myplace.placeName}">
+                                        <input type="hidden" id="idplace" th:field="*{id}">
                                     </td>
                                 </tr>
                                 </tbody>
