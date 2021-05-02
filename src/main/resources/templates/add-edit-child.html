@@ -19,29 +19,31 @@
 
 
 
-                <form action="#" th:action="@{/place/savePlace/${places.id}" th:object="${childPlace}"
+                <form action="#" th:action="@{/place/savePlace}" th:object="${childPlace}"
                       method="post">
-                    <div th:object="${places}" >
-                        <input hidden th:field="*{id}"/>
-                        <select th:field="*{id}">
+
+
+
+                        <select th:field="*{mychildplace}">
+                            <div th:object="${places}" >
                             <option
                             th:each="myplace : ${place}"
 
 
                                      th:value="${myplace.id}"   th:id="${myplace.id}"  th:text="${myplace.placeName}">
-
-
-
-
+                                <input hidden th:field="*{id}" th:text="${id}"  th:value="${myplace.id}" />
+                            </option>
 
 
                             </option>
+                            </div>
+
                         </select>
 
 
 
 
-                    </div>
+
 
 
 
