@@ -28,13 +28,13 @@ public class ChildPlaceController {
     //String username;
 
 
-    @RequestMapping(path={"/{placeId}/savePlace"},method = {RequestMethod.POST,RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String register(Model model, Place place ,@ModelAttribute("childPlace")ChildPlace childPlace,Model model2, AppUser appUser,@PathVariable("placeId")long pId ) {
+    @RequestMapping(path={"/savePlace"},method = {RequestMethod.POST,RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String register(Model model,@ModelAttribute("places") Place place ,@ModelAttribute("childPlace")ChildPlace childPlace,Model model2, AppUser appUser ) {
        // placeName=place.getPlaceName();
        // System.out.println("placeName"+placeName);
         appUser.setId(3);
         childPlace.setUserChildPlace(appUser);
-        place.setId(pId);
+       // place.setId(pId);
         System.out.println(place.getId());
         childPlace.setMychildplace(place);
         childPlaceService.registerChildPlace(childPlace) ;
@@ -49,7 +49,7 @@ public class ChildPlaceController {
 
         model.addAttribute("childPlace", childPlace);
         model.addAttribute("place",placeService.getAllPlaces());
-
+        model.addAttribute("places",new Place());
         //model.addAttribute("place",places);
         return "add-edit-child";
     }
