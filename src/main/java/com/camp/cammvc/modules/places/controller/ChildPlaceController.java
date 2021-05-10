@@ -32,9 +32,10 @@ public class ChildPlaceController {
 
 
     @RequestMapping(path={"/savePlace"},method = {RequestMethod.POST,RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String register(@ModelAttribute("childPlace")ChildPlace childPlace,AppUser appUser ,Principal principal ) {
+    public String register(@ModelAttribute("childPlace")ChildPlace childPlace ,Principal principal ) {
        // placeName=place.getPlaceName();
        // System.out.println("placeName"+placeName);
+        AppUser appUser=new AppUser();
         appUser.setId(3);
         childPlace.setUserChildPlace(appUser);
        // place.setId(pId);
@@ -47,11 +48,11 @@ public class ChildPlaceController {
 
 
     @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET})
-    public String editUserById(Model model, ChildPlace childPlace)
+    public String editUserById(Model model)
     {
 
-        model.addAttribute("childPlace", childPlace);
-        model.addAttribute("place",placeService.getAllPlaces());
+        model.addAttribute("childPlace", new ChildPlace());
+        model.addAttribute("places",placeService.getAllPlaces());
        // model.addAttribute("places",new Place());
         //model.addAttribute("place",places);
         return "posts/add-edit-child";

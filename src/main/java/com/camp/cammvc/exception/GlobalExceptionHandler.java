@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
 
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
         model.addAttribute(responseApi);
-        return  "error-404";
+        return  "error/error-404";
     }
 
 
@@ -36,7 +36,7 @@ public class GlobalExceptionHandler {
 
         ResponseApi responseApi=new ResponseApi(false,exception.getMessage(),new Date().toString(),null);
         model.addAttribute(responseApi);
-        return "error-403";
+        return "error/error-403";
 
     }
 
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
         ResponseApi responseApi=new ResponseApi(false,exception.getCause().getMessage(),new Date().toString(),null);
 
         model.addAttribute(responseApi);
-        return "error-500";
+        return "error/error-500";
 
     }
 

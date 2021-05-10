@@ -25,9 +25,9 @@
 
 
                         <select th:field="*{mychildplace}">
-                            <div th:object="${place}" >
+
                             <option
-                            th:each="myplace : ${place}"
+                            th:each="myplace : ${places}"
 
 
                                      th:value="${myplace.id}"   th:text="${myplace.placeName}">
@@ -36,7 +36,7 @@
 
 
                             </option>
-                            </div>
+
 
                         </select>
 

@@ -36,20 +36,20 @@ public class MyErrorController implements ErrorController {
                 System.out.println(statusCode.toString());
                 responseApi=new ResponseApi(false,"myUser Not Found",new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
-                return "error-404";
+                return "error/error-404";
             }
             else if(statusCode == HttpStatus.FORBIDDEN.value()) {
                 final Throwable error = errorAttributes.getError(webRequest);
                 responseApi=new ResponseApi(false,"Forbidden Access",new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
-                return "error-403";
+                return "error/error-403";
             }
 
             else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 final Throwable error = errorAttributes.getError(webRequest);
                 responseApi=new ResponseApi(false,"Internal Server Error",new Date().toString(),null);
                 model.addAttribute("responseApi", responseApi);
-                return "error-500";
+                return "error/error-500";
             }
 
 
