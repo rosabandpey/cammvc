@@ -1,4 +1,4 @@
-package com.camp.cammvc.entity;
+package com.camp.cammvc.modules.users.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

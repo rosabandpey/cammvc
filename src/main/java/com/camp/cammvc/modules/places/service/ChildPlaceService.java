@@ -1,7 +1,6 @@
-package com.camp.cammvc.service;
+package com.camp.cammvc.modules.places.service;
 
-import com.camp.cammvc.entity.AppUser;
-import com.camp.cammvc.entity.ChildPlace;
+import com.camp.cammvc.modules.places.entity.ChildPlace;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

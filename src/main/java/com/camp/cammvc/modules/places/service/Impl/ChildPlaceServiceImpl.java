@@ -1,18 +1,16 @@
-package com.camp.cammvc.service.Impl;
+package com.camp.cammvc.modules.places.service.Impl;
 
-import com.camp.cammvc.entity.ChildPlace;
+import com.camp.cammvc.modules.places.entity.ChildPlace;
 import com.camp.cammvc.entity.ResponseApi;
 import com.camp.cammvc.entity.ResponseToken;
 import com.camp.cammvc.exception.MyErrorHandler;
-import com.camp.cammvc.service.ChildPlaceService;
+import com.camp.cammvc.modules.places.service.ChildPlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.HashMap;
 import java.util.List;

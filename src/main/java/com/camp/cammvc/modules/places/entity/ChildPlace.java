@@ -1,4 +1,6 @@
-package com.camp.cammvc.entity;
+package com.camp.cammvc.modules.places.entity;
+
+import com.camp.cammvc.modules.users.entity.AppUser;
 
 import java.io.Serializable;
 import java.util.Date;

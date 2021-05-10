@@ -1,8 +1,8 @@
-package com.camp.cammvc.controller;
+package com.camp.cammvc.modules.users.controller;
 
 
-import com.camp.cammvc.entity.AppUser;
-import com.camp.cammvc.service.UserApiService;
+import com.camp.cammvc.modules.users.entity.AppUser;
+import com.camp.cammvc.modules.users.service.UserApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public class UserController {
     public String getByUsername(@PathVariable("username") String username,Model model){
 
         model.addAttribute("user",userApiService.getByUsername(username) );
-        return "user";
+        return "users/user";
     }
 
 
@@ -30,7 +30,7 @@ public class UserController {
     public String getAllUsers(Model model){
 
         model.addAttribute("users",userApiService.getAllUsers());
-        return "users";
+        return "users/users";
     }
 
   /*  @GetMapping("/add-edit-user")
@@ -45,13 +45,13 @@ public class UserController {
     public String editUserById(Model model,AppUser appUser)
     {
         model.addAttribute("appUser", appUser);
-        return "add-edit-user";
+        return "users/add-edit-user";
     }
 
 
 
     @RequestMapping(path="/create",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String register(Model model, AppUser appUser)  {
+    public String register(@ModelAttribute AppUser appUser)  {
 
         userApiService.register(appUser) ;
         return "redirect:/edit";
@@ -61,7 +61,7 @@ public class UserController {
     public String login(Model model,AppUser appUser)
     {
         model.addAttribute("appUser", appUser);
-        return "login";
+        return "users/login";
     }
 
     @RequestMapping(path="/loginPage",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -76,7 +76,7 @@ public class UserController {
     public String logout()
     {
         userApiService.logout();
-        return "logout";
+        return "users/logout";
     }
 
 

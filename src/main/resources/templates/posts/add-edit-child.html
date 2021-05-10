@@ -25,13 +25,13 @@
 
 
                         <select th:field="*{mychildplace}">
-                            <div th:object="${places}" >
+                            <div th:object="${place}" >
                             <option
                             th:each="myplace : ${place}"
 
 
-                                     th:value="${myplace.id}"   th:id="${myplace.id}"  th:text="${myplace.placeName}">
-                                <input hidden th:field="*{id}" th:text="${id}"  th:value="${myplace.id}" />
+                                     th:value="${myplace.id}"   th:text="${myplace.placeName}">
+
                             </option>
 
 

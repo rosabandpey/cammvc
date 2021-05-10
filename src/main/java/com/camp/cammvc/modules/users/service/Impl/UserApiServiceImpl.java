@@ -1,21 +1,16 @@
-package com.camp.cammvc.service.Impl;
+package com.camp.cammvc.modules.users.service.Impl;
 
 import com.camp.cammvc.entity.ResponseToken;
 import com.camp.cammvc.exception.MyErrorHandler;
-import com.camp.cammvc.entity.AppUser;
+import com.camp.cammvc.modules.users.entity.AppUser;
 import com.camp.cammvc.entity.ResponseApi;
-import com.camp.cammvc.exception.ApiException;
-import com.camp.cammvc.exception.NotFoundException;
-import com.camp.cammvc.service.UserApiService;
+import com.camp.cammvc.modules.users.service.UserApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 
@@ -124,6 +119,11 @@ public class UserApiServiceImpl implements UserApiService {
         responseToken.setToken("");
         System.out.println( " logout  "+responseToken.getToken());
         return " logout Successfully";
+    }
+
+    @Override
+    public AppUser findUserByUsername(String username) {
+        return null;
     }
 
     public  ResponseEntity<?> register(AppUser appUser)  {

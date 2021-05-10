@@ -1,6 +1,6 @@
-package com.camp.cammvc.service;
+package com.camp.cammvc.modules.users.service;
 
-import com.camp.cammvc.entity.AppUser;
+import com.camp.cammvc.modules.users.entity.AppUser;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -12,4 +12,5 @@ public interface UserApiService {
     public ResponseEntity<?> login(AppUser appUser);
     public  ResponseEntity<?> register(AppUser appUser);
     public  String logout();
+    public AppUser findUserByUsername(String username);
 }

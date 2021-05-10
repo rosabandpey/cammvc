@@ -1,11 +1,10 @@
-package com.camp.cammvc.service.Impl;
+package com.camp.cammvc.modules.places.service.Impl;
 
-import com.camp.cammvc.entity.AppUser;
-import com.camp.cammvc.entity.Place;
+import com.camp.cammvc.modules.places.entity.Place;
 import com.camp.cammvc.entity.ResponseApi;
 import com.camp.cammvc.entity.ResponseToken;
 import com.camp.cammvc.exception.MyErrorHandler;
-import com.camp.cammvc.service.PlaceService;
+import com.camp.cammvc.modules.places.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

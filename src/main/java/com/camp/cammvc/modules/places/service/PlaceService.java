@@ -1,7 +1,6 @@
-package com.camp.cammvc.service;
+package com.camp.cammvc.modules.places.service;
 
-import com.camp.cammvc.entity.AppUser;
-import com.camp.cammvc.entity.Place;
+import com.camp.cammvc.modules.places.entity.Place;
 
 import java.util.List;
 
