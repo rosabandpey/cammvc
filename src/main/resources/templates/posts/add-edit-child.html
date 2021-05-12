@@ -25,20 +25,20 @@
 
 
 
-                        <select   th:field="*{mychildplace}"   >
+                        <select >
 
                             <option
                             th:each="myplace : ${places}"
 
 
                                   th:name="myplace.id"   th:value="${(myplace.id)}"   th:text="${myplace.placeName}">
-
+                                <a th:href="@{/getId/{id}(id = ${myplace.id})}"> </a>
                             </option>
 
 
 
 
-                            </option>
+
 
 
                         </select>
