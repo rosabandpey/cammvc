@@ -65,7 +65,7 @@ public class UserController {
     }
 
     @RequestMapping(path="/loginPage",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String loginPage(Model model, AppUser appUser)  {
+    public String loginPage(@ModelAttribute AppUser appUser)  {
 
         userApiService.login(appUser) ;
         return "redirect:/allUser";

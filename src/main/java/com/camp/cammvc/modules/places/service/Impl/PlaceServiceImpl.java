@@ -82,7 +82,10 @@ public class PlaceServiceImpl implements PlaceService {
         return places;
     }
 
-
+    @Override
+    public Place getById(Long valueOf) {
+        return null;
+    }
 
 
 }

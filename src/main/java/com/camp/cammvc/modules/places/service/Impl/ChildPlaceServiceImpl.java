@@ -44,7 +44,7 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(responseToken.getToken());
-        HttpEntity<?> request = new HttpEntity<ChildPlace>(childPlace,headers);
+        HttpEntity<?> request = new HttpEntity<>(childPlace, headers);
         response = restTemplate.postForEntity(uri, request,ResponseApi.class);
         //response =  restTemplate.exchange(uri,HttpMethod.POST,request,ResponseApi.class);
 
