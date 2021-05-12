@@ -31,8 +31,8 @@
                             th:each="myplace : ${places}"
 
 
-                                  th:name="myplace.id"   th:value="${(myplace.id)}"   th:text="${myplace.placeName}">
-                                <a th:href="@{/getId/{id}(id = ${myplace.id})}"> </a>
+                               th:value="${(myplace.id)}"   th:text="${myplace.placeName}"  >
+                                <a th:href="@{/getId(placeid= ${myplace.id})}"> place</a>
                             </option>
 
 

@@ -39,21 +39,21 @@ public class ChildPlaceController {
         AppUser appUser=new AppUser();
         appUser.setId(3);
         //model.addAttribute("place",place);
-        //Place place=new Place();
-        //place.setId(id);
+        // place=new Place();
+        //place.setId(Long.valueOf(placeid));
        // System.out.println(id);
-        childPlace.setMychildplace(place);
+        //childPlace.setMychildplace(place);
         childPlaceService.registerChildPlace(childPlace) ;
         return "redirect:/edit";
     }
 
 
-    @RequestMapping(path = { "/getId/{id}"},method = {RequestMethod.GET})
-    public String getplaceId(Model model,@PathVariable("id") long id)
+    @RequestMapping(path = { "/getId"},method = {RequestMethod.GET})
+    public String getplaceId(Model model,@RequestParam(value = "placeid")long placeid)
     {
         place=new Place();
-        place.setId(id);
-        System.out.println(id);
+        place.setId(placeid);
+        System.out.println(placeid);
         return "redirect:/edit";
     }
 
