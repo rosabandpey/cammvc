@@ -23,20 +23,21 @@
                       method="post"  enctype="multipart/form-data">
 
 
+                    <select th:field="*{mychildplace}"  id="cat" >
+
+                        <option
+                                th:each="myplace : ${places}"
 
 
-                        <select th:field="*{mychildplace}" >
-
-                            <option
-                            th:each="myplace : ${places}"
+                                th:value="${myplace.id}" th:text="${myplace.placeName}"  >
 
 
-                               th:value="${(myplace.id)}"   th:text="${myplace.placeName}"  >
-
-                            </option>
+                        </option>
 
 
-                        </select>
+                    </select>
+
+
 
 
 

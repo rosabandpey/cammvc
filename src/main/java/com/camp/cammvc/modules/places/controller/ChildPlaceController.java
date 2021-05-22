@@ -41,9 +41,10 @@ public class ChildPlaceController {
         //model.addAttribute("place",place);
         // place=new Place();
         //place.setId(Long.valueOf(placeid));
-        System.out.println(childPlace.getMychildplace());
-        //childPlace.getMychildplace();
+
+        //childPlace.setMychildplace(3);
         childPlace.setUserChildPlace(3);
+        System.out.println(childPlace.getMychildplace());
         childPlaceService.registerChildPlace(childPlace) ;
         return "redirect:/edit";
     }
