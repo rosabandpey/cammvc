@@ -11,9 +11,9 @@ public class ChildPlace  implements Serializable {
 
     private long id;
 
-    private Place mychildplace;
+    private long mychildplace;
 
-    private AppUser userChildPlace;
+    private long userChildPlace;
 
     private String childName;
 
@@ -63,7 +63,7 @@ public class ChildPlace  implements Serializable {
     public ChildPlace() {
     }
 
-    public ChildPlace(long id,Place mychildplace,AppUser userChildPlace ,String childName, String childLocation, String childDetails, String childCountry, String childCity, String childAddress, int childCellSignal, Date childLastVisit, int childCrowdness, int childManNoise, int childCleanness, int childSafty, int childWater, int childElectronic, int childShower, int childTrash, int childPicnicTable, int childToilet, int childWifi, int childFirePits, int childPetAllowed, int childADAaccessible) {
+    public ChildPlace(long id,long mychildplace,long userChildPlace ,String childName, String childLocation, String childDetails, String childCountry, String childCity, String childAddress, int childCellSignal, Date childLastVisit, int childCrowdness, int childManNoise, int childCleanness, int childSafty, int childWater, int childElectronic, int childShower, int childTrash, int childPicnicTable, int childToilet, int childWifi, int childFirePits, int childPetAllowed, int childADAaccessible) {
         this.id = id;
         this.mychildplace = mychildplace;
         this.userChildPlace = userChildPlace;
@@ -100,19 +100,19 @@ public class ChildPlace  implements Serializable {
         this.id = id;
     }
 
-    public Place getMychildplace() {
+    public long getMychildplace() {
         return mychildplace;
     }
 
-    public void setMychildplace(Place mychildplace) {
+    public void setMychildplace(long mychildplace) {
         this.mychildplace = mychildplace;
     }
 
-    public AppUser getUserChildPlace() {
+    public long getUserChildPlace() {
         return userChildPlace;
     }
 
-    public void setUserChildPlace(AppUser userChildPlace) {
+    public void setUserChildPlace(long userChildPlace) {
         this.userChildPlace = userChildPlace;
     }
 

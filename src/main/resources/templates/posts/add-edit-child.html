@@ -20,25 +20,20 @@
 
 
                 <form action="#" th:action="@{/place/savePlace}" th:object="${childPlace}"
-                      method="post"  >
+                      method="post"  enctype="multipart/form-data">
 
 
 
 
-                        <select >
+                        <select th:field="*{mychildplace}" >
 
                             <option
                             th:each="myplace : ${places}"
 
 
                                th:value="${(myplace.id)}"   th:text="${myplace.placeName}"  >
-                                <a th:href="@{/getId(placeid= ${myplace.id})}"> place</a>
+
                             </option>
-
-
-
-
-
 
 
                         </select>

@@ -33,32 +33,25 @@ public class ChildPlaceController {
 
 
     @RequestMapping(path={"/savePlace"},method = {RequestMethod.POST,RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
-    public String register(@ModelAttribute("childPlace") ChildPlace childPlace , Principal principal ) {
+    public String register(@ModelAttribute("childPlace") ChildPlace childPlace , Principal principalo ) {
        // placeName=place.getPlaceName();
        // System.out.println("placeName"+placeName);
-        AppUser appUser=new AppUser();
-        appUser.setId(3);
+       // AppUser appUser=new AppUser();
+       // appUser.setId(3);
         //model.addAttribute("place",place);
         // place=new Place();
         //place.setId(Long.valueOf(placeid));
-       // System.out.println(id);
-        //childPlace.setMychildplace(place);
+        System.out.println(childPlace.getMychildplace());
+        //childPlace.getMychildplace();
+        childPlace.setUserChildPlace(3);
         childPlaceService.registerChildPlace(childPlace) ;
         return "redirect:/edit";
     }
 
 
-    @RequestMapping(path = { "/getId"},method = {RequestMethod.GET})
-    public String getplaceId(Model model,@RequestParam(value = "placeid")long placeid)
-    {
-        place=new Place();
-        place.setId(placeid);
-        System.out.println(placeid);
-        return "redirect:/edit";
-    }
 
     @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET})
-    public String editUserById(Model model)
+    public String editPlaceById(Model model)
     {
 
         model.addAttribute("childPlace", new ChildPlace());
