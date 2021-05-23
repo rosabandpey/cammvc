@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -33,12 +35,14 @@ public class ChildPlaceController {
 
 
     @RequestMapping(path={"/savePlace"},method = {RequestMethod.POST,RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
-    public String register(@ModelAttribute("childPlace") ChildPlace childPlace , Principal principalo ) {
+    public String register(@ModelAttribute("childPlace")@Valid ChildPlace childPlace ,Model model, Principal principal , BindingResult bindingResult) {
 
-       // AppUser appUser=new AppUser();
-       // appUser.setId(3);
+        if (bindingResult.hasErrors()){
+            model.addAttribute("childPlace", new ChildPlace());
+            model.addAttribute("places",placeService.getAllPlaces());
 
-        childPlace.setUserChildPlace(3);
+            return "posts/add-edit-child";
+        }
         System.out.println(childPlace.getMychildplace());
         childPlaceService.registerChildPlace(childPlace) ;
         return "redirect:/edit";
@@ -52,7 +56,7 @@ public class ChildPlaceController {
 
         model.addAttribute("childPlace", new ChildPlace());
         model.addAttribute("places",placeService.getAllPlaces());
-        
+
         return "posts/add-edit-child";
     }
 

@@ -36,13 +36,7 @@
 
 
                     </select>
-
-
-
-
-
-
-
+                    <div class="validation" th:if="${#fields.hasErrors('mychildplace')}" th:errors="*{mychildplace}"></div>
 
 
 
@@ -55,18 +49,21 @@
                             <label for="childName" class="col-form-label">Place Name</label>
                             <input type="text" th:field="*{childName}" class="form-control"
                                    id="childName" placeholder="Place Name" />
+                              <div class="validation" th:if="${#fields.hasErrors('childName')}" th:errors="*{childName}"></div>
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childDetails" class="col-form-label">Details</label>
                             <input type="text" th:field="*{childDetails}" class="form-control"
                                    id="childDetails" placeholder="Details" />
+                            <div class="validation" th:if="${#fields.hasErrors('childDetails')}" th:errors="*{childDetails}"></div>
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="ChildAddress" class="col-form-label">Address</label>
                             <input type="text" th:field="*{childAddress}" class="form-control"
                                    id="childAddress" placeholder="Address" />
+                            <div class="validation" th:if="${#fields.hasErrors('childAddress')}" th:errors="*{childAddress}"></div>
                         </div>
 
 
@@ -77,30 +74,36 @@
                             <label for="childLocation" class="col-form-label">Location</label>
                             <input type="text" th:field="*{childLocation}" class="form-control"
                                    id="childLocation" placeholder="Location" />
+                            <div class="validation" th:if="${#fields.hasErrors('childLocation')}" th:errors="*{childLocation}"></div>
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childCountry" class="col-form-label">Country</label>
                             <input type="text" th:field="*{childCountry}" class="form-control"
                                    id="childCountry" placeholder="Country" />
+                            <div class="validation" th:if="${#fields.hasErrors('childCountry')}" th:errors="*{childCountry}"></div>
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childCity" class="col-form-label">City</label>
                             <input type="text" th:field="*{childCity}" class="form-control"
                                    id="childCity" placeholder="City" />
+                            <div class="validation" th:if="${#fields.hasErrors('childCity')}" th:errors="*{childCity}"></div>
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childCellSignal" class="col-form-label">CellSignal</label>
                             <input type="number" th:field="*{childCellSignal}" class="form-control" th:default=0
                                    id="childCellSignal" placeholder="CellSignal" />
+                            <div class="validation" th:if="${#fields.hasErrors('childCellSignal')}" th:errors="*{childCellSignal}"></div>
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childCleanness" class="col-form-label">Cleanness</label>
                             <input type="number" th:field="*{childCleanness}" class="form-control" th:default=0
                                    id="childCleanness" placeholder="Cleanness" />
+                            <div class="validation" th:if="${#fields.hasErrors('childCleanness')}" th:errors="*{childCleanness}"></div>
+
                         </div>
 
 
@@ -108,6 +111,8 @@
                             <label for="childCrowdness" class="col-form-label">Crowdness</label>
                             <input type="number" th:field="*{childCrowdness}" class="form-control" th:default=0
                                    id="childCrowdness" placeholder="Crowdness" />
+                            <div class="validation" th:if="${#fields.hasErrors('childCrowdness')}" th:errors="*{childCrowdness}"></div>
+
                         </div>
 
 
@@ -115,12 +120,16 @@
                             <label for="childElectronic" class="col-form-label">Electronic</label>
                             <input type="number" th:field="*{childElectronic}" class="form-control" th:default=0
                                    id="childElectronic" placeholder="Electronic" />
+                            <div class="validation" th:if="${#fields.hasErrors('childElectronic')}" th:errors="*{childElectronic}"></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childFirePits" class="col-form-label">FirePits</label>
                             <input type="number" th:field="*{childFirePits}" class="form-control" th:default=0
                                    id="childFirePits" placeholder="FirePits" />
+                            <div class="validation" th:if="${#fields.hasErrors('childFirePits')}" th:errors="*{childFirePits}"></div>
+
                         </div>
 
 
@@ -129,42 +138,56 @@
                             <label for="childManNoise" class="col-form-label">ManNoise</label>
                             <input type="number" th:field="*{childManNoise}" class="form-control"  th:default=0
                                    id="childManNoise" placeholder="ManNoise" />
+                            <div class="validation" th:if="${#fields.hasErrors('childManNoise')}" th:errors="*{childManNoise}"></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childWifi" class="col-form-label">Wifi</label>
                             <input type="number" th:field="*{childWifi}" class="form-control"  th:default=0
                                    id="childWifi" placeholder="Wifi" />
+                            <div class="validation" th:if="${#fields.hasErrors('childWifi')}" th:errors="*{childWifi}"></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childWater" class="col-form-label">Water</label>
                             <input type="number" th:field="*{childWater}" class="form-control"  th:default=0
                                    id="childWater" placeholder="Water" />
+                            <div class="validation" th:if="${#fields.hasErrors('childWater')}" th:errors="*{childWater}"></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childTrash" class="col-form-label">Trash</label>
                             <input type="number" th:field="*{childTrash}" class="form-control"  th:default=0
                                    id="childTrash" placeholder="Trash" />
+                            <div class="validation" th:if="${#fields.hasErrors('childTrash')}" th:errors="*{childTrash}"></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childToilet" class="col-form-label">Toilet</label>
                             <input type="number" th:field="*{childToilet}" class="form-control"  th:default=0
                                    id="childToilet" placeholder="Toilet" />
+                            <div class="validation" th:if="${#fields.hasErrors('childToilet')}" th:errors="*{childToilet}"></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childShower" class="col-form-label">Shower</label>
                             <input type="number" th:field="*{childShower}" class="form-control" th:default=0
                                    id="childShower" placeholder="Shower" />
+                            <div class="validation" th:if="${#fields.hasErrors('childShower')}" th:errors="*{childShower}"></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childSafty" class="col-form-label">Safty</label>
                             <input type="number" th:field="*{childSafty}" class="form-control" th:default=0
                                    id="childSafty" placeholder="Safty" />
+                            <div class="validation" th:if="${#fields.hasErrors('childSafty')}" th:errors="*{childSafty}"></div>
+
                         </div>
 
 
@@ -172,6 +195,8 @@
                             <label for="childPicnicTable" class="col-form-label">PicnicTable</label>
                             <input type="number" th:field="*{childPicnicTable}" class="form-control" th:default=0
                                    id="childPicnicTable" placeholder="PicnicTable" />
+                            <div class="validation" th:if="${#fields.hasErrors('childPicnicTable')}" th:errors="*{childPicnicTable}"></div>
+
                         </div>
 
 
@@ -180,6 +205,7 @@
                             <label for="childPetAllowed" class="col-form-label">PetAllowed</label>
                             <input type="number" th:field="*{childPetAllowed}" class="form-control" th:default=0
                                    id="childPetAllowed" placeholder="PetAllowed" />
+
                         </div>
 
 
@@ -187,6 +213,8 @@
                             <label for="childADAaccessible" class="col-form-label">ADAaccessible</label>
                             <input type="number" th:field="*{childADAaccessible}" class="form-control" th:default=0
                                    id="childADAaccessible" placeholder="ADAaccessible" />
+                            <div class="validation" th:if="${#fields.hasErrors('childADAaccessible')}" th:errors="*{childADAaccessible}"></div>
+
                         </div>
 
 

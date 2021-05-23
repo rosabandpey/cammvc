@@ -2,6 +2,8 @@ package com.camp.cammvc.modules.places.entity;
 
 import com.camp.cammvc.modules.users.entity.AppUser;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,49 +17,56 @@ public class ChildPlace  implements Serializable {
 
     private long userChildPlace;
 
+    //@NotBlank
     private String childName;
 
+   // @NotBlank
     private String childLocation;
 
+   // @NotBlank
     private String childDetails;
 
+   // @NotBlank
     private String childCountry;
 
+   // @NotBlank
     private String childCity;
 
+    //@NotBlank
     private String childAddress;
 
-    private int childCellSignal;
+    private Integer childCellSignal;
 
     private Date childLastVisit;
 
-    private int childCrowdness;
+    private Integer childCrowdness;
 
-    private int childManNoise;
+    private Integer childManNoise;
 
-    private int childCleanness;
+    private Integer childCleanness;
 
-    private int childSafty;
+    private Integer childSafty;
 
-    private int childWater;
+    private Integer childWater;
 
-    private int childElectronic;
+    private Integer childElectronic;
 
-    private int childShower;
+    private Integer childShower;
 
-    private int childTrash;
+    private Integer childTrash;
 
-    private int childPicnicTable;
+    private Integer childPicnicTable;
 
-    private int childToilet;
+    private Integer childToilet;
 
-    private int childWifi;
+    private Integer childWifi;
 
-    private int childFirePits;
+    private Integer childFirePits;
 
-    private int childPetAllowed;
+    private Integer childPetAllowed;
 
-    private int childADAaccessible;
+    @NotNull
+    private Integer childADAaccessible;
 
 
     public ChildPlace() {
@@ -164,11 +173,11 @@ public class ChildPlace  implements Serializable {
         this.childAddress = childAddress;
     }
 
-    public int getChildCellSignal() {
+    public Integer getChildCellSignal() {
         return childCellSignal;
     }
 
-    public void setChildCellSignal(int childCellSignal) {
+    public void setChildCellSignal(Integer childCellSignal) {
         this.childCellSignal = childCellSignal;
     }
 
@@ -180,115 +189,115 @@ public class ChildPlace  implements Serializable {
         this.childLastVisit = childLastVisit;
     }
 
-    public int getChildCrowdness() {
+    public Integer getChildCrowdness() {
         return childCrowdness;
     }
 
-    public void setChildCrowdness(int childCrowdness) {
+    public void setChildCrowdness(Integer childCrowdness) {
         this.childCrowdness = childCrowdness;
     }
 
-    public int getChildManNoise() {
+    public Integer getChildManNoise() {
         return childManNoise;
     }
 
-    public void setChildManNoise(int childManNoise) {
+    public void setChildManNoise(Integer childManNoise) {
         this.childManNoise = childManNoise;
     }
 
-    public int getChildCleanness() {
+    public Integer getChildCleanness() {
         return childCleanness;
     }
 
-    public void setChildCleanness(int childCleanness) {
+    public void setChildCleanness(Integer childCleanness) {
         this.childCleanness = childCleanness;
     }
 
-    public int getChildSafty() {
+    public Integer getChildSafty() {
         return childSafty;
     }
 
-    public void setChildSafty(int childSafty) {
+    public void setChildSafty(Integer childSafty) {
         this.childSafty = childSafty;
     }
 
-    public int getChildWater() {
+    public Integer getChildWater() {
         return childWater;
     }
 
-    public void setChildWater(int childWater) {
+    public void setChildWater(Integer childWater) {
         this.childWater = childWater;
     }
 
-    public int getChildElectronic() {
+    public Integer getChildElectronic() {
         return childElectronic;
     }
 
-    public void setChildElectronic(int childElectronic) {
+    public void setChildElectronic(Integer childElectronic) {
         this.childElectronic = childElectronic;
     }
 
-    public int getChildShower() {
+    public Integer getChildShower() {
         return childShower;
     }
 
-    public void setChildShower(int childShower) {
+    public void setChildShower(Integer childShower) {
         this.childShower = childShower;
     }
 
-    public int getChildTrash() {
+    public Integer getChildTrash() {
         return childTrash;
     }
 
-    public void setChildTrash(int childTrash) {
+    public void setChildTrash(Integer childTrash) {
         this.childTrash = childTrash;
     }
 
-    public int getChildPicnicTable() {
+    public Integer getChildPicnicTable() {
         return childPicnicTable;
     }
 
-    public void setChildPicnicTable(int childPicnicTable) {
+    public void setChildPicnicTable(Integer childPicnicTable) {
         this.childPicnicTable = childPicnicTable;
     }
 
-    public int getChildToilet() {
+    public Integer getChildToilet() {
         return childToilet;
     }
 
-    public void setChildToilet(int childToilet) {
+    public void setChildToilet(Integer childToilet) {
         this.childToilet = childToilet;
     }
 
-    public int getChildWifi() {
+    public Integer getChildWifi() {
         return childWifi;
     }
 
-    public void setChildWifi(int childWifi) {
+    public void setChildWifi(Integer childWifi) {
         this.childWifi = childWifi;
     }
 
-    public int getChildFirePits() {
+    public Integer getChildFirePits() {
         return childFirePits;
     }
 
-    public void setChildFirePits(int childFirePits) {
+    public void setChildFirePits(Integer childFirePits) {
         this.childFirePits = childFirePits;
     }
 
-    public int getChildPetAllowed() {
+    public Integer getChildPetAllowed() {
         return childPetAllowed;
     }
 
-    public void setChildPetAllowed(int childPetAllowed) {
+    public void setChildPetAllowed(Integer childPetAllowed) {
         this.childPetAllowed = childPetAllowed;
     }
 
-    public int getChildADAaccessible() {
+    public Integer getChildADAaccessible() {
         return childADAaccessible;
     }
 
-    public void setChildADAaccessible(int childADAaccessible) {
+    public void setChildADAaccessible(Integer childADAaccessible) {
         this.childADAaccessible = childADAaccessible;
     }
 }
