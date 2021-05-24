@@ -23,6 +23,7 @@
                 <form action="#" th:action="@{/place/register}" th:object="${childPlace}"
                       method="post"  enctype="multipart/form-data">
 
+                    <div th:if="${#fields.hasErrors('*')}">errors</div>
 
                     <select th:field="*{mychildplace}"  id="cat" >
 
@@ -51,7 +52,6 @@
                                   <label class="col-form-label col-sm-3" for="childName">Title : </label>
                                   <div class="col-sm-9">
                                       <input class="form-control" id="childName" th:field="*{childName}" type="text">
-                                      <div class="validation" th:if="${#fields.hasErrors('childName')}" th:errors="*{childName}"></div>
                                   </div>
                               </div>
 
@@ -83,11 +83,16 @@
                                    id="childCountry" placeholder="Country" />
                         </div>
 
-                        <div class="form-group col-md-8">
-                            <label for="childCity" class="col-form-label">City</label>
+                        <div class="form-group row">
+                            <label for="childCity" class="col-form-label col-sm-3">City</label>
+                            <div class="col-sm-9">
                             <input type="text" th:field="*{childCity}" class="form-control"
                                    id="childCity" placeholder="City" />
+                                <p th:if="${#fields.hasErrors('childCity')}" class="label label-danger" th:errors="*{childCity}">Incorrect LP</p>
+                            </div>
                         </div>
+
+
 
                         <div class="form-group col-md-8">
                             <label for="childCellSignal" class="col-form-label">CellSignal</label>
@@ -217,9 +222,6 @@
                     </div>
                 </form>
 
-
-
-                </table>
             </div>
         </div>
     </div>

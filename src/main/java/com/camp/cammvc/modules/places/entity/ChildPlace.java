@@ -17,7 +17,7 @@ public class ChildPlace  implements Serializable {
 
     private long userChildPlace;
 
-    @NotNull(message = "not null")
+
     private String childName;
 
    // @NotBlank
@@ -30,6 +30,7 @@ public class ChildPlace  implements Serializable {
     private String childCountry;
 
    // @NotBlank
+    @NotNull(message = "not null")
     private String childCity;
 
     //@NotBlank
