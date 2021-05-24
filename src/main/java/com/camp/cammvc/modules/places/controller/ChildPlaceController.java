@@ -10,10 +10,11 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.security.Principal;
 
 @Controller
@@ -29,29 +30,29 @@ public class ChildPlaceController {
 
 
 
-    Place place;
-   // String placeName;
-    //String username;
 
+    @RequestMapping(path={"/register"},method = {RequestMethod.POST},produces = MediaType.APPLICATION_JSON_VALUE)
+    public String register(@Valid @ModelAttribute("childPlace") ChildPlace childPlace ,Model model, Principal principal , BindingResult bindingResult) throws IllegalAccessException, IOException, InvocationTargetException {
 
-    @RequestMapping(path={"/savePlace"},method = {RequestMethod.POST,RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
-    public String register(@ModelAttribute("childPlace")@Valid ChildPlace childPlace ,Model model, Principal principal , BindingResult bindingResult) {
+        System.out.println("child name "+childPlace.getChildName());
 
         if (bindingResult.hasErrors()){
-            model.addAttribute("childPlace", new ChildPlace());
+            //
+           // model.addAttribute("childPlace", new ChildPlace());
             model.addAttribute("places",placeService.getAllPlaces());
 
             return "posts/add-edit-child";
+        } else {
+            System.out.println(childPlace.getMychildplace());
+            childPlaceService.registerChildPlace(childPlace);
+            return "redirect:/posts/add-edit-child";
         }
-        System.out.println(childPlace.getMychildplace());
-        childPlaceService.registerChildPlace(childPlace) ;
-        return "redirect:/edit";
     }
 
 
 
-    @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET})
-    public String editPlaceById(Model model)
+    @RequestMapping(path = {"/register"},method = {RequestMethod.GET})
+    public String showRegister(Model model)
     {
 
         model.addAttribute("childPlace", new ChildPlace());

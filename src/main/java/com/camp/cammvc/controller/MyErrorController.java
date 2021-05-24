@@ -55,12 +55,12 @@ public class MyErrorController implements ErrorController {
 
         }
 
-        return "error";
+        return "error/error";
     }
 
 
     @Override
     public String getErrorPath() {
-        return "/error";
+        return "error/error";
     }
 }

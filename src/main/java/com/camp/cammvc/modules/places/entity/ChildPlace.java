@@ -17,7 +17,7 @@ public class ChildPlace  implements Serializable {
 
     private long userChildPlace;
 
-    //@NotBlank
+    @NotNull(message = "not null")
     private String childName;
 
    // @NotBlank
@@ -65,7 +65,6 @@ public class ChildPlace  implements Serializable {
 
     private Integer childPetAllowed;
 
-    @NotNull
     private Integer childADAaccessible;
 
 
