@@ -2,7 +2,7 @@ package com.camp.cammvc.modules.places.entity;
 
 import com.camp.cammvc.modules.users.entity.AppUser;
 
-import javax.validation.constraints.NotBlank;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
