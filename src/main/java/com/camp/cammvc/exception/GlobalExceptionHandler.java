@@ -40,6 +40,7 @@ public class GlobalExceptionHandler {
 
     }
 
+    /*
     @ExceptionHandler(Exception.class)
     public String globalException(Exception exception, WebRequest request, Model model) throws JsonProcessingException {
 
@@ -49,7 +50,7 @@ public class GlobalExceptionHandler {
         return "error/error-500";
 
     }
-
+*/
 
 
 }

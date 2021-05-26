@@ -42,14 +42,14 @@ public class ChildPlaceController {
 
 
     @RequestMapping(path={"/register"},method = {RequestMethod.POST},produces = MediaType.APPLICATION_JSON_VALUE)
-    public String register(@Valid @ModelAttribute("childPlace") ChildPlace childPlace , Model model, Principal principal , Errors error) throws IllegalAccessException, IOException, InvocationTargetException {
+    public String register(@Valid @ModelAttribute("childPlace") ChildPlace childPlace ,BindingResult bindingResult, Model model, Principal principal ) throws IllegalAccessException, IOException, InvocationTargetException {
 
         model.addAttribute("childPlace", childPlace);
         model.addAttribute("places",placeService.getAllPlaces());
 
 
-        System.out.println("Has errors="+error.hasErrors()); // Output: Has errors=true
-        if (error.hasErrors()){
+        System.out.println("Has errors="+bindingResult.hasErrors()); // Output: Has errors=true
+        if (bindingResult.hasErrors()){
             //
           //  model.addAttribute("childPlace", childPlace);
           //  model.addAttribute("places",placeService.getAllPlaces());
