@@ -3,7 +3,7 @@ package com.camp.cammvc.modules.places.entity;
 import com.camp.cammvc.modules.users.entity.AppUser;
 
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -29,8 +29,8 @@ public class ChildPlace  implements Serializable {
    // @NotBlank
     private String childCountry;
 
-   // @NotBlank
-    @NotNull(message = "not null")
+
+    @NotBlank(message = "not null")
     private String childCity;
 
     //@NotBlank
