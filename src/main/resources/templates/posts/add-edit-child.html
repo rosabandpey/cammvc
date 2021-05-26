@@ -45,6 +45,8 @@
                                   <label class="col-form-label col-sm-3" for="childName">Title : </label>
                                   <div class="col-sm-9">
                                       <input class="form-control" id="childName" th:field="*{childName}" type="text">
+                                      <div class="alert alert-warning" th:if="${#fields.hasErrors('childName')}" th:errorclass="error" th:errors="*{childName}" ></div>
+
                                   </div>
                               </div>
 
@@ -52,15 +54,17 @@
                             <label for="childDetails" class="col-form-label">Details</label>
                             <input type="text" th:field="*{childDetails}" class="form-control"
                                    id="childDetails" placeholder="Details" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childDetails')}" th:errorclass="error" th:errors="*{childDetails}" ></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childAddress"></label>
                             <input type="text" th:field="*{childAddress}" class="form-control"
                                                                      id="childAddress" placeholder="Address" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childAddress')}" th:errorclass="error" th:errors="*{childAddress}" ></div>
+
                         </div>
-
-
 
 
 
@@ -68,12 +72,16 @@
                             <label for="childLocation" class="col-form-label">Location</label>
                             <input type="text" th:field="*{childLocation}" class="form-control"
                                    id="childLocation" placeholder="Location" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childLocation')}" th:errorclass="error" th:errors="*{childLocation}" ></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childCountry" class="col-form-label">Country</label>
                             <input type="text" th:field="*{childCountry}" class="form-control"
                                    id="childCountry" placeholder="Country" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childCountry')}" th:errorclass="error" th:errors="*{childCountry}" ></div>
+
                         </div>
 
                         <div class="form-group row">
@@ -94,12 +102,16 @@
                             <label for="childCellSignal" class="col-form-label">CellSignal</label>
                             <input type="number" th:field="*{childCellSignal}" class="form-control" th:default=0
                                    id="childCellSignal" placeholder="CellSignal" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childCellSignal')}" th:errorclass="error" th:errors="*{childCellSignal}" ></div>
+
                         </div>
 
                         <div class="form-group col-md-8">
                             <label for="childCleanness" class="col-form-label">Cleanness</label>
                             <input type="number" th:field="*{childCleanness}" class="form-control" th:default=0
                                    id="childCleanness" placeholder="Cleanness" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childCleanness')}" th:errorclass="error" th:errors="*{childCleanness}" ></div>
+
 
                         </div>
 
@@ -108,6 +120,7 @@
                             <label for="childCrowdness" class="col-form-label">Crowdness</label>
                             <input type="number" th:field="*{childCrowdness}" class="form-control" th:default=0
                                    id="childCrowdness" placeholder="Crowdness" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childCrowdness')}" th:errorclass="error" th:errors="*{childCrowdness}" ></div>
 
                         </div>
 
@@ -116,6 +129,7 @@
                             <label for="childElectronic" class="col-form-label">Electronic</label>
                             <input type="number" th:field="*{childElectronic}" class="form-control" th:default=0
                                    id="childElectronic" placeholder="Electronic" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childElectronic')}" th:errorclass="error" th:errors="*{childElectronic}" ></div>
 
                         </div>
 
@@ -123,6 +137,8 @@
                             <label for="childFirePits" class="col-form-label">FirePits</label>
                             <input type="number" th:field="*{childFirePits}" class="form-control" th:default=0
                                    id="childFirePits" placeholder="FirePits" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childFirePits')}" th:errorclass="error" th:errors="*{childFirePits}" ></div>
+
 
                         </div>
 
@@ -132,6 +148,8 @@
                             <label for="childManNoise" class="col-form-label">ManNoise</label>
                             <input type="number" th:field="*{childManNoise}" class="form-control"  th:default=0
                                    id="childManNoise" placeholder="ManNoise" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childManNoise')}" th:errorclass="error" th:errors="*{childManNoise}" ></div>
+
 
                         </div>
 
@@ -139,6 +157,8 @@
                             <label for="childWifi" class="col-form-label">Wifi</label>
                             <input type="number" th:field="*{childWifi}" class="form-control"  th:default=0
                                    id="childWifi" placeholder="Wifi" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childWifi')}" th:errorclass="error" th:errors="*{childWifi}" ></div>
+
 
                         </div>
 
@@ -146,6 +166,8 @@
                             <label for="childWater" class="col-form-label">Water</label>
                             <input type="number" th:field="*{childWater}" class="form-control"  th:default=0
                                    id="childWater" placeholder="Water" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childWater')}" th:errorclass="error" th:errors="*{childWater}" ></div>
+
 
                         </div>
 
@@ -153,6 +175,8 @@
                             <label for="childTrash" class="col-form-label">Trash</label>
                             <input type="number" th:field="*{childTrash}" class="form-control"  th:default=0
                                    id="childTrash" placeholder="Trash" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childTrash')}" th:errorclass="error" th:errors="*{childTrash}" ></div>
+
 
                         </div>
 
@@ -160,6 +184,8 @@
                             <label for="childToilet" class="col-form-label">Toilet</label>
                             <input type="number" th:field="*{childToilet}" class="form-control"  th:default=0
                                    id="childToilet" placeholder="Toilet" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childToilet')}" th:errorclass="error" th:errors="*{childToilet}" ></div>
+
 
                         </div>
 
@@ -167,6 +193,8 @@
                             <label for="childShower" class="col-form-label">Shower</label>
                             <input type="number" th:field="*{childShower}" class="form-control" th:default=0
                                    id="childShower" placeholder="Shower" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childShower')}" th:errorclass="error" th:errors="*{childShower}" ></div>
+
 
                         </div>
 
@@ -174,6 +202,8 @@
                             <label for="childSafty" class="col-form-label">Safty</label>
                             <input type="number" th:field="*{childSafty}" class="form-control" th:default=0
                                    id="childSafty" placeholder="Safty" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childSafty')}" th:errorclass="error" th:errors="*{childSafty}" ></div>
+
 
                         </div>
 
@@ -182,6 +212,8 @@
                             <label for="childPicnicTable" class="col-form-label">PicnicTable</label>
                             <input type="number" th:field="*{childPicnicTable}" class="form-control" th:default=0
                                    id="childPicnicTable" placeholder="PicnicTable" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childPicnicTable')}" th:errorclass="error" th:errors="*{childPicnicTable}" ></div>
+
 
                         </div>
 
@@ -191,6 +223,8 @@
                             <label for="childPetAllowed" class="col-form-label">PetAllowed</label>
                             <input type="number" th:field="*{childPetAllowed}" class="form-control"
                                    id="childPetAllowed" placeholder="PetAllowed" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childPetAllowed')}" th:errorclass="error" th:errors="*{childPetAllowed}" ></div>
+
 
                         </div>
 
@@ -199,6 +233,8 @@
                             <label for="childADAaccessible" class="col-form-label">ADAaccessible</label>
                             <input type="number" th:field="*{childADAaccessible}" class="form-control" th:default=0
                                    id="childADAaccessible" placeholder="ADAaccessible" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('childADAaccessible')}" th:errorclass="error" th:errors="*{childADAaccessible}" ></div>
+
 
                         </div>
 

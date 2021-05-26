@@ -17,23 +17,23 @@ public class ChildPlace  implements Serializable {
 
     private long userChildPlace;
 
-
+    @NotBlank(message = "is required")
     private String childName;
 
-   // @NotBlank
+    @NotBlank(message = "is required")
     private String childLocation;
 
-   // @NotBlank
+    @NotBlank(message = "is required")
     private String childDetails;
 
-   // @NotBlank
+    @NotBlank(message = "is required")
     private String childCountry;
 
 
-    @NotBlank(message = "not null")
+    @NotBlank(message = "is required")
     private String childCity;
 
-    //@NotBlank
+    @NotBlank(message = "is required")
     private String childAddress;
 
     private Integer childCellSignal;
