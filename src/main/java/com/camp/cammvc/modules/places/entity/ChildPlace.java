@@ -4,6 +4,7 @@ import com.camp.cammvc.modules.users.entity.AppUser;
 
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -36,36 +37,51 @@ public class ChildPlace  implements Serializable {
     @NotBlank(message = "is required")
     private String childAddress;
 
+    @NotNull
     private Integer childCellSignal;
 
     private Date childLastVisit;
 
+    @NotNull
     private Integer childCrowdness;
 
+    @NotNull
     private Integer childManNoise;
 
+    @NotNull
     private Integer childCleanness;
 
+    @NotNull
     private Integer childSafty;
 
+    @NotNull
     private Integer childWater;
 
+    @NotNull
     private Integer childElectronic;
 
+    @NotNull
     private Integer childShower;
 
+    @NotNull
     private Integer childTrash;
 
+    @NotNull
     private Integer childPicnicTable;
 
+    @NotNull
     private Integer childToilet;
 
+    @NotNull
     private Integer childWifi;
 
+    @NotNull
     private Integer childFirePits;
 
+    @NotNull
     private Integer childPetAllowed;
 
+    @NotNull
     private Integer childADAaccessible;
 
 

@@ -1,16 +1,25 @@
 package com.camp.cammvc.modules.users.controller;
 
 
+import com.camp.cammvc.modules.places.entity.ChildPlace;
 import com.camp.cammvc.modules.users.entity.AppUser;
 import com.camp.cammvc.modules.users.service.UserApiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.security.Principal;
+
 @Controller
-@RequestMapping("/")
+@RequestMapping(path = {"/",""})
 public class UserController {
 
 
@@ -18,7 +27,13 @@ public class UserController {
     private UserApiService userApiService;
 
 
-    @GetMapping("/getUser/{username}")
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
+
+    @GetMapping("/user/getUser/{username}")
     public String getByUsername(@PathVariable("username") String username,Model model){
 
         model.addAttribute("user",userApiService.getByUsername(username) );
@@ -26,50 +41,73 @@ public class UserController {
     }
 
 
-    @GetMapping("/allUser")
+    @GetMapping("/user/allUser")
     public String getAllUsers(Model model){
 
         model.addAttribute("users",userApiService.getAllUsers());
         return "users/users";
     }
 
-  /*  @GetMapping("/add-edit-user")
-    public String create(){
 
 
-        return "add-edit-user";
-    } */
-
-
-    @RequestMapping(path = {"/edit", "/edit/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
-    public String editUserById(Model model,AppUser appUser)
+    @RequestMapping(path = {"/user/edit", "/user/edit/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
+    public String editUserById(Model model)
     {
-        model.addAttribute("appUser", appUser);
+        model.addAttribute("appUser", new AppUser());
+        return "users/add-edit-user";
+    }
+
+
+    @RequestMapping(path = {"/user/register"},method = {RequestMethod.GET,RequestMethod.POST})
+    public String showRegisterUser(Model model)
+    {
+        model.addAttribute("appUser", new AppUser());
         return "users/add-edit-user";
     }
 
 
 
-    @RequestMapping(path="/create",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String register(@ModelAttribute AppUser appUser)  {
 
+    @RequestMapping(path="/user/registerUser",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String register(@Valid @ModelAttribute("appUser") AppUser appUser, BindingResult bindingResult,Model model)  {
+
+        model.addAttribute("appUser",appUser);
+
+        if (bindingResult.hasErrors()){
+            return "users/add-edit-user";
+        }
         userApiService.register(appUser) ;
-        return "redirect:/edit";
+        return "redirect:/user/register";
     }
 
-    @GetMapping(path = {"/login"})
-    public String login(Model model,AppUser appUser)
+
+
+    @RequestMapping(path = {"/"},method = {RequestMethod.GET})
+    public String showLogin(Model model)
     {
-        model.addAttribute("appUser", appUser);
+        model.addAttribute("appUser", new AppUser());
+
         return "users/login";
     }
 
-    @RequestMapping(path="/loginPage",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String loginPage(@ModelAttribute AppUser appUser)  {
 
-        userApiService.login(appUser) ;
-        return "redirect:/allUser";
+    @RequestMapping(path = {"/login"},method = {RequestMethod.GET})
+    public String showmyLogin(Model model)
+    {
+        model.addAttribute("appUser", new AppUser());
+
+        return "users/login";
     }
+
+    @RequestMapping(path="/user/loginPage",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String loginPage( @ModelAttribute("appUser") AppUser appUser, Model model)  {
+
+        model.addAttribute("appUser",appUser);
+        userApiService.login(appUser);
+        return "redirect:/user/allUser";
+
+    }
+
 
 
     @RequestMapping(path = {"/logout"},method = {RequestMethod.GET,RequestMethod.POST})

@@ -2,6 +2,7 @@ package com.camp.cammvc.modules.users.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -15,11 +16,23 @@ public class AppUser implements Serializable {
 
 
     private long id;
+
+    @NotBlank(message = "is required")
     private String firstName;
+
+    @NotBlank(message = "is required")
     private String lastName;
+
+    @NotBlank(message = "is required")
+    @Email
     private String username;
+
+    @NotBlank(message = "is required")
+    @Size(min=8,max = 12)
     private String password;
+
     private String sex;
+
     private Date birthdate;
 
 

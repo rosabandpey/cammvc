@@ -50,9 +50,6 @@ public class ChildPlaceController {
 
         System.out.println("Has errors="+bindingResult.hasErrors()); // Output: Has errors=true
         if (bindingResult.hasErrors()){
-            //
-          //  model.addAttribute("childPlace", childPlace);
-          //  model.addAttribute("places",placeService.getAllPlaces());
 
             return "posts/add-edit-child";
         } else {
