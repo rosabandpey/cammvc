@@ -72,6 +72,21 @@ public class ChildPlaceController {
     }
 
 
+    @RequestMapping(path={"edit","edit/{id}"},method ={RequestMethod.GET} )
+    public String editplace(Model model,@PathVariable("id") String id){
+        model.addAttribute("childPlace",childPlaceService.findChildPlaceById(id));
+        return "posts/add-edit-child";
+
+    }
+
+
+    @GetMapping("/allPlace")
+    public String getAllUsers(Model model){
+
+        model.addAttribute("places",childPlaceService.getAllChildPlace());
+        model.addAttribute("categories",placeService.getAllPlaces());
+        return "posts/places";
+    }
 
 
 
