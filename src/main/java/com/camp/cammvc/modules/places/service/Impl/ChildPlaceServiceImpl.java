@@ -49,7 +49,7 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
 
         }
         else {
-            System.out.println( "AllPlace  "+" Place List Retrieved Successfully");
+            System.out.println( "AllPlace  "+" Child Place List Retrieved Successfully");
 
         }
         return places;

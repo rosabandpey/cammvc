@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping( "/place")
@@ -72,7 +73,7 @@ public class ChildPlaceController {
     }
 
 
-    @RequestMapping(path={"edit","edit/{id}"},method ={RequestMethod.GET} )
+    @RequestMapping(path={"edit/{id}"},method ={RequestMethod.GET} )
     public String editplace(Model model,@PathVariable("id") String id){
         model.addAttribute("childPlace",childPlaceService.findChildPlaceById(id));
         return "posts/add-edit-child";
@@ -80,10 +81,13 @@ public class ChildPlaceController {
     }
 
 
-    @GetMapping("/allPlace")
-    public String getAllUsers(Model model){
 
-        model.addAttribute("places",childPlaceService.getAllChildPlace());
+    @RequestMapping(path = "allPlace",method = {RequestMethod.GET})
+    public String getAllPlaces(Model model){
+
+        List<ChildPlace> list=childPlaceService.getAllChildPlace();
+        model.addAttribute("allPlaces",list);
+        System.out.println(list.get(0));
         model.addAttribute("categories",placeService.getAllPlaces());
         return "posts/places";
     }
