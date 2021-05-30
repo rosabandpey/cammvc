@@ -45,7 +45,7 @@ public class ChildPlaceController {
     @RequestMapping(path={"/register"},method = {RequestMethod.POST},produces = MediaType.APPLICATION_JSON_VALUE)
     public String register(@Valid @ModelAttribute("childPlace") ChildPlace childPlace ,BindingResult bindingResult, Model model, Principal principal ) throws IllegalAccessException, IOException, InvocationTargetException {
 
-        model.addAttribute("childPlace", childPlace);
+       // model.addAttribute("childPlace", childPlace);
         model.addAttribute("places",placeService.getAllPlaces());
 
 
@@ -56,7 +56,7 @@ public class ChildPlaceController {
         } else {
             System.out.println(childPlace.getMychildplace());
             childPlaceService.registerChildPlace(childPlace);
-            return "redirect:/place/";
+            return "redirect:/place/allPlace";
         }
     }
 
