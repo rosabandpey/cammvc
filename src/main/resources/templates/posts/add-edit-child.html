@@ -21,9 +21,9 @@
 
 
                 <form action="#" th:action="@{/place/register}" th:object="${childPlace}"
-                      method="post"  >
+                      method="post" enctype="multipart/form-data" >
 
-
+                    <input th:field="*{id}" type="hidden">
 
                     <select th:field="*{mychildplace}"  id="cat" >
 

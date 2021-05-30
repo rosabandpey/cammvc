@@ -92,28 +92,16 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
     }
 
     @Override
-    public ResponseEntity<?> findChildPlaceById(String id) {
+    public ChildPlace findChildPlaceById(long id) {
         final String uri = "http://localhost:8085/api/childPlace/findPlaceById/{id}";
         restTemplate.setErrorHandler(new MyErrorHandler());
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("id", id);
+       // Map<String, Long> params = new HashMap<String, Long>();
+       // params.put("id",id);
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(responseToken.getToken());
         HttpEntity request = new HttpEntity(headers);
-        response =  restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class,params);
-        List<ChildPlace> places = (response.getBody().getData());
-
-        if (!response.getBody().isSuccessfull() ){
-            System.out.println( "myUser   "+response.getBody().getMessage().toString());
-            //      if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
-            //          throw new NotFoundException(response.getBody().getMessage());
-            //     }
-            //    throw new ApiException(response.getBody().getMessage());
-
-        } else {
-            System.out.println( "myUser  "+"User Retrieved Successfully");
-
-        }
-        return response;
+        ResponseEntity<ChildPlace> response =  restTemplate.exchange(uri, HttpMethod.GET, request, ChildPlace.class,id);
+        ChildPlace place = (response.getBody());
+        return place;
     }
 }

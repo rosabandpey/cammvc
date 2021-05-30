@@ -15,5 +15,5 @@ public interface ChildPlaceService {
 
     public  ResponseEntity<?> deleteChildPlace(ChildPlace childPlace);
 
-    public  ResponseEntity<?> findChildPlaceById(String id);
+    public  ChildPlace findChildPlaceById(long id);
 }

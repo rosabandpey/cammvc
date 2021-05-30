@@ -65,7 +65,6 @@ public class ChildPlaceController {
     @RequestMapping(path = {"/",""},method = {RequestMethod.GET})
     public String showRegister(Model model)
     {
-
         model.addAttribute("childPlace", new ChildPlace());
         model.addAttribute("places",placeService.getAllPlaces());
 
@@ -73,13 +72,15 @@ public class ChildPlaceController {
     }
 
 
-    @RequestMapping(path={"edit/{id}"},method ={RequestMethod.GET} )
-    public String editplace(Model model,@PathVariable("id") String id){
+    @RequestMapping(path={"/edit/{id}"},method ={RequestMethod.GET} )
+    public String editplace(Model model,@PathVariable("id") long id){
+        System.out.println(id);
         model.addAttribute("childPlace",childPlaceService.findChildPlaceById(id));
+        model.addAttribute("places",placeService.getAllPlaces());
+
         return "posts/add-edit-child";
 
     }
-
 
 
     @RequestMapping(path = "allPlace",method = {RequestMethod.GET})
