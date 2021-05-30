@@ -16,7 +16,7 @@ public class ChildPlace  implements Serializable {
 
     private long mychildplace;
 
-    private long userChildPlace;
+    //private long userChildPlace;
 
     @NotBlank(message = "is required")
     private String childName;
@@ -91,7 +91,7 @@ public class ChildPlace  implements Serializable {
     public ChildPlace(long id,long mychildplace,long userChildPlace ,String childName, String childLocation, String childDetails, String childCountry, String childCity, String childAddress, int childCellSignal, Date childLastVisit, int childCrowdness, int childManNoise, int childCleanness, int childSafty, int childWater, int childElectronic, int childShower, int childTrash, int childPicnicTable, int childToilet, int childWifi, int childFirePits, int childPetAllowed, int childADAaccessible) {
         this.id = id;
         this.mychildplace = mychildplace;
-        this.userChildPlace = userChildPlace;
+       // this.userChildPlace = userChildPlace;
         this.childName = childName;
         this.childLocation = childLocation;
         this.childDetails = childDetails;
@@ -132,7 +132,7 @@ public class ChildPlace  implements Serializable {
     public void setMychildplace(long mychildplace) {
         this.mychildplace = mychildplace;
     }
-
+/*
     public long getUserChildPlace() {
         return userChildPlace;
     }
@@ -140,7 +140,7 @@ public class ChildPlace  implements Serializable {
     public void setUserChildPlace(long userChildPlace) {
         this.userChildPlace = userChildPlace;
     }
-
+*/
     public String getChildName() {
         return childName;
     }

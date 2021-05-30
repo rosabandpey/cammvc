@@ -54,7 +54,7 @@ public class ChildPlaceController {
 
             return "posts/add-edit-child";
         } else {
-            System.out.println(childPlace.getMychildplace());
+           // System.out.println(childPlace.getMychildplace());
             childPlaceService.registerChildPlace(childPlace);
             return "redirect:/place/allPlace";
         }
