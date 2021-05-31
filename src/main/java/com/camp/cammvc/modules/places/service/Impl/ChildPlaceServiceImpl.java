@@ -103,4 +103,30 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
         ChildPlace place = (response.getBody());
         return place;
     }
+
+    @Override
+    public ResponseEntity<?> deleteById(Long id) {
+
+        final String uri="http://localhost:8085/api/childPlace/deletePlace/{id}";
+        restTemplate.setErrorHandler(new MyErrorHandler());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(responseToken.getToken());
+        HttpEntity request = new HttpEntity(headers);
+        response =  restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class,id);
+
+
+        if (!response.getBody().isSuccessfull()){
+            System.out.println( "Place   "+response.getBody().getMessage().toString());
+            //  if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
+            //      throw new NotFoundException(response.getBody().getMessage());
+            //  }
+            // throw new ApiException(response.getBody().getMessage());
+
+        }
+        else {
+            System.out.println( "Place  "+" Child Place Delete Successfully");
+
+        }
+        return response;
+    }
 }

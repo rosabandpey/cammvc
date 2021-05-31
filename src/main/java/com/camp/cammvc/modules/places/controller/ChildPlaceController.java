@@ -78,13 +78,18 @@ public class ChildPlaceController {
 
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") Long id) {
+        childPlaceService.deleteById(id);
+        return "redirect:/place/allPlace";
+    }
 
-    @RequestMapping(path = "allPlace",method = {RequestMethod.GET})
+
+    @RequestMapping(path = "/allPlace",method = {RequestMethod.GET})
     public String getAllPlaces(Model model){
 
-        List<ChildPlace> list=childPlaceService.getAllChildPlace();
-        model.addAttribute("allPlaces",list);
-        System.out.println(list.get(0));
+
+        model.addAttribute("allPlaces",childPlaceService.getAllChildPlace());
         model.addAttribute("categories",placeService.getAllPlaces());
         return "posts/places";
     }
