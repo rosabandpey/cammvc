@@ -50,12 +50,20 @@ public class UserController {
 
 
 
-    @RequestMapping(path = {"/user/edit", "/user/edit/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
-    public String editUserById(Model model)
+    @RequestMapping(path = { "/user/edit/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
+    public String editUserById(@PathVariable("id") long id,Model model)
     {
-        model.addAttribute("appUser", new AppUser());
+        model.addAttribute("appUser",userApiService.findUserById(id));
         return "users/add-edit-user";
     }
+
+    @RequestMapping(path = { "/user/delete/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
+    public String deleteUserById(@PathVariable("id") long id,Model model)
+    {
+        model.addAttribute("appUser",userApiService.deleteUserById(id));
+        return "redirect:/user/allUser";
+    }
+
 
 
     @RequestMapping(path = {"/user/register"},method = {RequestMethod.GET,RequestMethod.POST})

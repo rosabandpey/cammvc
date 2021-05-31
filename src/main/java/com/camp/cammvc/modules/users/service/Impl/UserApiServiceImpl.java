@@ -2,6 +2,7 @@ package com.camp.cammvc.modules.users.service.Impl;
 
 import com.camp.cammvc.entity.ResponseToken;
 import com.camp.cammvc.exception.MyErrorHandler;
+import com.camp.cammvc.modules.places.entity.ChildPlace;
 import com.camp.cammvc.modules.users.entity.AppUser;
 import com.camp.cammvc.entity.ResponseApi;
 import com.camp.cammvc.modules.users.service.UserApiService;
@@ -124,6 +125,49 @@ public class UserApiServiceImpl implements UserApiService {
     @Override
     public AppUser findUserByUsername(String username) {
         return null;
+    }
+
+    @Override
+    public AppUser findUserById(long id) {
+
+        final String uri = "http://localhost:8085/api/childPlace/findUserById/{id}";
+        restTemplate.setErrorHandler(new MyErrorHandler());
+        // Map<String, Long> params = new HashMap<String, Long>();
+        // params.put("id",id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(responseToken.getToken());
+        HttpEntity request = new HttpEntity(headers);
+        ResponseEntity<AppUser> response =  restTemplate.exchange(uri, HttpMethod.GET, request, AppUser.class,id);
+        AppUser user = (response.getBody());
+        return user;
+
+    }
+
+    @Override
+    public ResponseEntity<?> deleteUserById(long id) {
+
+        final String uri="http://localhost:8085/api/authenticate/deleteUser/{id}";
+        restTemplate.setErrorHandler(new MyErrorHandler());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(responseToken.getToken());
+        HttpEntity request = new HttpEntity(headers);
+        response =  restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class,id);
+
+
+        if (!response.getBody().isSuccessfull()){
+            System.out.println( "User   "+response.getBody().getMessage().toString());
+            //  if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
+            //      throw new NotFoundException(response.getBody().getMessage());
+            //  }
+            // throw new ApiException(response.getBody().getMessage());
+
+        }
+        else {
+            System.out.println( "User  "+" User Delete Successfully");
+
+        }
+        return response;
+
     }
 
     public  ResponseEntity<?> register(AppUser appUser)  {

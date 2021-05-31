@@ -13,4 +13,6 @@ public interface UserApiService {
     public  ResponseEntity<?> register(AppUser appUser);
     public  String logout();
     public AppUser findUserByUsername(String username);
+    public AppUser findUserById(long id);
+    public ResponseEntity<?>  deleteUserById(long id);
 }

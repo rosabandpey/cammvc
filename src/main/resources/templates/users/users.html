@@ -44,6 +44,16 @@
                                 <td th:text="${myuser.password}"></td>
                                 <td th:text="${myuser.firstName}"></td>
                                 <td th:text="${myuser.lastName}"></td>
+
+                                <td>
+                                    <a class="btn btn-success"
+                                       style="width: 80px" th:href="@{/user/edit/{id}(id=${myuser.id})}">Edit</a>
+                                </td>
+
+                                <td>
+                                    <a class="btn btn-success"
+                                       style="width: 80px" th:href="@{/user/delete/{id}(id=${myuser.id})}">Delete</a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
