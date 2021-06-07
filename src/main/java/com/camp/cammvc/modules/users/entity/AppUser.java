@@ -28,7 +28,7 @@ public class AppUser implements Serializable {
     private String username;
 
     @NotBlank(message = "is required")
-    @Size(min=8,max = 12)
+    //@Size(min=8,max = 12)
     private String password;
 
     private String sex;

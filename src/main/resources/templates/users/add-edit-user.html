@@ -30,7 +30,7 @@
                         <div class="form-group col-md-8">
                             <label for="password" class="col-form-label">Password</label>
                             <input type="text" th:field="*{password}" class="form-control"
-                                   id="password" placeholder="Password" />
+                                   id="password" placeholder="Password" required="required" th:min="8" th:max="12"/>
                             <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}" ></div>
 
                         </div>
