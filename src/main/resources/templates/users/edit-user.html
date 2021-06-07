@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<div class="container my-5">
+    <h3> Add User</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form action="#" th:action="@{/user/editUser}" th:object="${appUser}"
+                      method="post">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="userName" class="col-form-label">User Name</label>
+                            <input type="text" th:field="*{username}" class="form-control"
+                                   id="userName" placeholder="User Name" readonly/>
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('username')}" th:errorclass="error" th:errors="*{username}" ></div>
+
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="password" class="col-form-label">Password</label>
+                            <input type=password th:field="*{password}" class="form-control"
+                                   id="password" placeholder="Password"  />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}" ></div>
+
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="lastName" class="col-form-label">First Name</label>
+                            <input type="text" th:field="*{firstName}" class="form-control"
+                                   id="firstName" placeholder="First Name" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}" ></div>
+
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="lastName" class="col-form-label">Last Name</label>
+                            <input type="text" th:field="*{lastName}" class="form-control"
+                                   id="lastName" placeholder="Last Name" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}" ></div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value=" Submit ">
+                        </div>
+
+                        <input type="hidden" id="id" th:field="*{id}">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

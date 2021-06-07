@@ -54,7 +54,20 @@ public class UserController {
     public String editUserById(@PathVariable("id") long id,Model model)
     {
         model.addAttribute("appUser",userApiService.findUserById(id));
-        return "users/add-edit-user";
+        return "users/edit-user";
+    }
+
+
+    @RequestMapping(path="/user/editUser",method = {RequestMethod.POST}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String editPage(@Valid @ModelAttribute("appUser") AppUser appUser, BindingResult bindingResult,Model model)  {
+
+        model.addAttribute("appUser",appUser);
+
+        if (bindingResult.hasErrors()){
+            return "users/edit-user";
+        }
+        userApiService.editProfile(appUser) ;
+        return "redirect:/user/allUser";
     }
 
     @RequestMapping(path = { "/user/delete/{id}"},method = {RequestMethod.GET,RequestMethod.POST})
@@ -70,7 +83,7 @@ public class UserController {
     public String showRegisterUser(Model model)
     {
         model.addAttribute("appUser", new AppUser());
-        return "users/add-edit-user";
+        return "redirect:/user/allUser";
     }
 
 

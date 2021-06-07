@@ -130,7 +130,7 @@ public class UserApiServiceImpl implements UserApiService {
     @Override
     public AppUser findUserById(long id) {
 
-        final String uri = "http://localhost:8085/api/childPlace/findUserById/{id}";
+        final String uri = "http://localhost:8085/api/authenticate/findUserById/{id}";
         restTemplate.setErrorHandler(new MyErrorHandler());
         // Map<String, Long> params = new HashMap<String, Long>();
         // params.put("id",id);
@@ -187,7 +187,22 @@ public class UserApiServiceImpl implements UserApiService {
 
         }
 
+    public  ResponseEntity<?> editProfile(AppUser appUser)  {
 
+        final String uri = "http://localhost:8085/api/authenticate/updateProfile";
+        restTemplate.setErrorHandler(new MyErrorHandler());
+        response = restTemplate.postForEntity(uri, appUser, ResponseApi.class);
+        if (!response.getBody().isSuccessfull()){
+
+            System.out.println( "Update Profile   "+response.getBody().getMessage().toString());
+            //    throw new ApiException(response.getBody().getMessage());
+        }
+        else {
+            System.out.println( "Update Profile   "+"User Profile Updated Successfully");
+        }
+        return response;
+
+    }
 
 
 

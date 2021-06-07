@@ -15,4 +15,5 @@ public interface UserApiService {
     public AppUser findUserByUsername(String username);
     public AppUser findUserById(long id);
     public ResponseEntity<?>  deleteUserById(long id);
+    public  ResponseEntity<?> editProfile(AppUser appUser);
 }

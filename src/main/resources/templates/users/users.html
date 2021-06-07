@@ -32,7 +32,6 @@
                             <thead>
                             <tr>
                                 <th>userName</th>
-                                <th>password</th>
                                 <th>firstName</th>
                                 <th>LastName</th>
 
@@ -41,7 +40,6 @@
                             <tbody>
                             <tr th:each="myuser : ${users}">
                                 <td th:text="${myuser.username}"></td>
-                                <td th:text="${myuser.password}"></td>
                                 <td th:text="${myuser.firstName}"></td>
                                 <td th:text="${myuser.lastName}"></td>
 
