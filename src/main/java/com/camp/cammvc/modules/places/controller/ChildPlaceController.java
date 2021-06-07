@@ -7,6 +7,7 @@ import com.camp.cammvc.modules.places.service.ChildPlaceService;
 import com.camp.cammvc.modules.places.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,11 +86,11 @@ public class ChildPlaceController {
     }
 
 
-    @RequestMapping(path = "/allPlace",method = {RequestMethod.GET})
-    public String getAllPlaces(Model model){
+    @RequestMapping(path = "/allPlace/{pageable}",method = {RequestMethod.GET})
+    public String getAllPlaces(Model model, @PathVariable("pageable")Pageable pageable){
 
 
-        model.addAttribute("allPlaces",childPlaceService.getAllChildPlace());
+        model.addAttribute("allPlaces",childPlaceService.getAllChildPlace(pageable));
         model.addAttribute("categories",placeService.getAllPlaces());
         return "posts/places";
     }
