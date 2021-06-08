@@ -29,19 +29,21 @@
                     <ul class="pagination">
                         <li class="page-item" th:classappend="${allPlaces.first} ? disabled">
                             <a class="page-link"
-                               th:href="@{/allPlace/{pageable}(pageable=${allPlaces.number - 1})}">Previous</a></li>
+                               th:href="@{/allPlaces(page=${allPlaces.number - 1})}">Previous</a></li>
 
                         <li class="page-item"
                             th:classappend="${allPlaces.number == i} ? active"
                             th:each="i : ${#numbers.sequence(0, allPlaces.totalPages - 1)}">
                             <a class="page-link"
                                th:with="url=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}"
-                               th:href="@{${url.replaceQuery('pageable').toUriString()}(pageable=${i})}">[[${i + 1}]]</a></li>
+                               th:href="@{${url.replaceQueryParam('page').toUriString()}(page=${i})}">[[${i + 1}]]</a></li>
 
                         <li class="page-item" th:classappend="${allPlaces.last} ? disabled">
-                            <a class="page-link" th:href="@{/allPlace/{pageable}(pageable=${allPlaces.number + 1})}">Next</a></li>
+                            <a class="page-link" th:href="@{/allPlaces(page=${allPlaces.number + 1})}">Next</a></li>
                     </ul>
                 </nav>
+
+
                 <div th:if="${allPlaces==null and #lists.isEmpty(allPlaces)}">No User found !!</div>
 
                 <div class="col-md-10">

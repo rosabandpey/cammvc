@@ -7,16 +7,21 @@ import com.camp.cammvc.modules.places.service.ChildPlaceService;
 import com.camp.cammvc.modules.places.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -86,9 +91,8 @@ public class ChildPlaceController {
     }
 
 
-    @RequestMapping(path = "/allPlace/{pageable}",method = {RequestMethod.GET})
-    public String getAllPlaces(Model model, @PathVariable("pageable")Pageable pageable){
-
+    @RequestMapping(path = "/allPlace",method = {RequestMethod.GET})
+    public String getAllPlaces(Model model,@PageableDefault(size = 5) Pageable pageable){
 
         model.addAttribute("allPlaces",childPlaceService.getAllChildPlace(pageable));
         model.addAttribute("categories",placeService.getAllPlaces());

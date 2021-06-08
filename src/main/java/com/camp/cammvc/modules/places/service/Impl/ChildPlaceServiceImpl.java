@@ -5,8 +5,8 @@ import com.camp.cammvc.entity.ResponseApi;
 import com.camp.cammvc.entity.ResponseToken;
 import com.camp.cammvc.exception.MyErrorHandler;
 import com.camp.cammvc.modules.places.service.ChildPlaceService;
-import com.camp.cammvc.modules.users.entity.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
@@ -39,8 +39,8 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(responseToken.getToken());
         HttpEntity request = new HttpEntity(headers);
-        response =   restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class,pageable);
-        Page<ChildPlace>  page=response.getBody().getPage();
+        response =   restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class);
+        Page<ChildPlace> page=response.getBody().getPage();
 
         if (!response.getBody().isSuccessfull()){
             System.out.println( "AllPlace   "+response.getBody().getMessage().toString());

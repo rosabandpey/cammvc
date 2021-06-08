@@ -16,6 +16,7 @@ public class ResponseApi<T> implements Serializable {
     private List<T> data;
     private Page<T> page;
 
+
     public ResponseApi() {
     }
 
