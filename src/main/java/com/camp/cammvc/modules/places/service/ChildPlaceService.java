@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ChildPlaceService {
 
-    public Page<ChildPlace> getAllChildPlace(Pageable pageable);
+    public Page<ChildPlace> getAllChildPlace(int pageNo);
 
     public  ResponseEntity<?> registerChildPlace(ChildPlace childPlace);
 

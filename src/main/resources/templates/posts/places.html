@@ -25,23 +25,11 @@
                 </p>
 
 
-                <nav aria-label="Page navigation example" style="float: right">
-                    <ul class="pagination">
-                        <li class="page-item" th:classappend="${allPlaces.first} ? disabled">
-                            <a class="page-link"
-                               th:href="@{/allPlaces(page=${allPlaces.number - 1})}">Previous</a></li>
 
-                        <li class="page-item"
-                            th:classappend="${allPlaces.number == i} ? active"
-                            th:each="i : ${#numbers.sequence(0, allPlaces.totalPages - 1)}">
-                            <a class="page-link"
-                               th:with="url=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}"
-                               th:href="@{${url.replaceQueryParam('page').toUriString()}(page=${i})}">[[${i + 1}]]</a></li>
 
-                        <li class="page-item" th:classappend="${allPlaces.last} ? disabled">
-                            <a class="page-link" th:href="@{/allPlaces(page=${allPlaces.number + 1})}">Next</a></li>
-                    </ul>
-                </nav>
+
+
+
 
 
                 <div th:if="${allPlaces==null and #lists.isEmpty(allPlaces)}">No User found !!</div>
@@ -92,6 +80,30 @@
             </div>
         </div>
     </div>
+
+    <div th:if = "${totalPages > 1}">
+        <div class = "row col-sm-10">
+            <div class = "col-sm-2">
+                Total Rows: [[${totalItems}]]
+            </div>
+            <div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/place/allPlace/' + ${i}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+            </div>
+            <div class = "col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/place/allPlace/' + ${currentPage + 1}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/place/allPlace/' + ${totalPages}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

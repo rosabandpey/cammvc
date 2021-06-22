@@ -32,7 +32,7 @@ public class ResponseApi<T> implements Serializable {
         this.message = message;
         Date = date;
         this.data = data;
-        this.page = page;
+        this.page=page;
     }
 
     public Page<T> getPage() {

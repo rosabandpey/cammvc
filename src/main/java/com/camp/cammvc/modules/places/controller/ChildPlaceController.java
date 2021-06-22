@@ -8,6 +8,8 @@ import com.camp.cammvc.modules.places.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.beans.support.PagedListHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
@@ -27,6 +29,9 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping( "/place")
@@ -91,13 +96,24 @@ public class ChildPlaceController {
     }
 
 
-    @RequestMapping(path = "/allPlace",method = {RequestMethod.GET})
-    public String getAllPlaces(Model model,@PageableDefault(size = 5) Pageable pageable){
+    @RequestMapping(path = "/allPlace/{pageNo}",method = {RequestMethod.GET})
+    public String getAllPlaces(Model model,@PathVariable (value = "pageNo") int pageNo) {
 
-        model.addAttribute("allPlaces",childPlaceService.getAllChildPlace(pageable));
-        model.addAttribute("categories",placeService.getAllPlaces());
+        int pageSize = 5;
+
+        Page<ChildPlace> page = childPlaceService.getAllChildPlace(pageNo);
+        List<ChildPlace> listChildPlace = page.getContent();
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("allPlaces", listChildPlace);
+        model.addAttribute("categories", placeService.getAllPlaces());
+
         return "posts/places";
-    }
+
+        }
+
+
 
 
 

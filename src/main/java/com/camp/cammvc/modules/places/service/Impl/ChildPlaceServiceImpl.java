@@ -8,6 +8,8 @@ import com.camp.cammvc.modules.places.service.ChildPlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,28 +36,17 @@ public class ChildPlaceServiceImpl implements ChildPlaceService {
     ResponseEntity<ResponseApi> response;
 
     @Override
-    public Page<ChildPlace> getAllChildPlace(Pageable pageable) {
-        final String uri="http://localhost:8085/api/childPlace/findAllPlaces/{pageable}";
+    public Page<ChildPlace> getAllChildPlace(int pageNo) {
+        final String uri="http://localhost:8085/api/childPlace/findAllPlaces/{pageNo}";
         restTemplate.setErrorHandler(new MyErrorHandler());
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(responseToken.getToken());
         HttpEntity request = new HttpEntity(headers);
-        response =   restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class);
-        Page<ChildPlace> page=response.getBody().getPage();
+        response =   restTemplate.exchange(uri, HttpMethod.GET, request, ResponseApi.class,pageNo);
+        Page<ChildPlace> list=response.getBody().getPage();
 
-        if (!response.getBody().isSuccessfull()){
-            System.out.println( "AllPlace   "+response.getBody().getMessage().toString());
-            //  if (response.getStatusCode()==HttpStatus.NOT_FOUND) {
-            //      throw new NotFoundException(response.getBody().getMessage());
-            //  }
-            // throw new ApiException(response.getBody().getMessage());
+        return list;
 
-        }
-        else {
-            System.out.println( "AllPlace  "+" Child Place List Retrieved Successfully");
-
-        }
-        return page;
     }
 
 
